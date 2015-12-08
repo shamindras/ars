@@ -8,4 +8,6 @@
 #' @return the upper bound linear function $u_{k}(x)$ for x in the interval 
 #' [$z_{j-1}$,$z_{j}$]
 #' @export
+
 uFun <- function(x,z,g) { }
+

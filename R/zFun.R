@@ -6,4 +6,6 @@
 #' used to calculate h(x)=ln(g(x))
 #' @return intersection of tangents of $x_{j}$ and $x_{j+1}$ named $z_{j}$
 #' @export
+
 zFun <- function(x,g) { }
+
