@@ -1,0 +1,2 @@
+checkLC <-
+function(f) { }
