@@ -1,0 +1,120 @@
+#' Helper function to choose two starting points
+#'
+#' @param inp_gfun A function user wants to generate samples from. This function is
+#'     used to calculate h(x)=ln(g(x))
+#' @param inp_Dvec A vector with two elements indicates the support domain of
+#'     the sample generation.
+#' @param inp_Initnumsampvec An even integer determining the number of points to
+#'     initially sample - should be even
+#' @return two starting points.
+#' @export
+faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
+
+    if(inp_Initnumsampvec %% 2 != 0){
+        stop("inp_Initnumsampvec must be an even integer")
+    }
+    # Input validation with Error handling
+    if(length(inp_Dvec) != 2 | !is.numeric(inp_Dvec)){
+        stop("inp_Dvec must be 2 numeric elements")
+    }
+    if(length(inp_Dvec) == 2 & is.numeric(inp_Dvec) & (inp_Dvec[1] >= inp_Dvec[2])){
+        stop("inp_Dvec must be 2 numeric elements, first element smaller than
+             the second element")
+    }
+    if(!is.function(inp_gfun)){
+        stop("inp_gfun must be a valid R function")
+    }
+
+    # User specified min/ max support
+    minvec_support   <- inp_Dvec[1]
+    maxvec_support   <- inp_Dvec[2]
+
+    # Based on the support function, determine the type of bounds specified
+    # e.g. (-Inf, Inf) then = "negInf_posInf"
+    # e.g. (-Inf, 10) then  = "negInf_posBnd"
+    # e.g. (-10, Inf) then =  "negBnd_posInf"
+    # e.g. (-13, 55) then =   "negBnd_posBnd"
+    if(is.infinite(minvec_support) & is.infinite(maxvec_support)){
+        support_classify <- "negInf_posInf"
+        init_optim_est   <- mean(def_faux_InitChoose_minLB, def_faux_InitChoose_maxUB)
+    } else if (is.infinite(minvec_support) & !is.infinite(maxvec_support)){
+        support_classify <- "negInf_posBnd"
+        init_optim_est   <- mean(def_faux_InitChoose_minLB, maxvec_support)
+    } else if (!is.infinite(minvec_support) & is.infinite(maxvec_support)){
+        support_classify <- "negBnd_posInf"
+        init_optim_est   <- mean(minvec_support, def_faux_InitChoose_maxUB)
+    } else {
+        support_classify <- "negBnd_posBnd"
+        init_optim_est   <- mean(minvec_support, maxvec_support)
+    }
+
+    # Solve for the mode of the density i.e. where the max occurs value
+    # using optim
+    xvec_mode <-  optim(par = c(init_optim_est), method = "L-BFGS-B"
+                        , fn = inp_gfun)$value
+
+    # Now we just need to sample specified number of points from the function
+    # on either side of the mode but bounded by the support
+
+    # Initialise dummy vector to collect samples
+    choose_sample_points <- numeric(length = 0)
+    # The number of points to sample around mode
+    num_sample_pts_mode  <- inp_Initnumsampvec/2
+
+    if(support_classify == "negInf_posInf"){
+        choose_sample_points <- c(runif(n = num_sample_pts_mode
+                                      , min = def_faux_InitChoose_minLB
+                                      , max = xvec_mode)
+                                  , runif(n = num_sample_pts_mode
+                                          , min = xvec_mode
+                                          , max = def_faux_InitChoose_maxUB))
+        init_optim_est   <- mean(def_faux_InitChoose_minLB, def_faux_InitChoose_maxUB)
+    } else if (support_classify == "negInf_posBnd"){
+        choose_sample_points <- c(runif(n = num_sample_pts_mode
+                                        , min = def_faux_InitChoose_minLB
+                                        , max = xvec_mode)
+                                  , runif(n = num_sample_pts_mode
+                                          , min = xvec_mode
+                                          , max = maxvec_support))
+    } else if (support_classify == "negBnd_posInf"){
+        choose_sample_points <- c(runif(n = num_sample_pts_mode
+                                        , min = minvec_support
+                                        , max = xvec_mode)
+                                  , runif(n = num_sample_pts_mode
+                                          , min = xvec_mode
+                                          , max = def_faux_InitChoose_maxUB))
+    } else {
+        choose_sample_points <- c(runif(n = num_sample_pts_mode
+                                        , min = minvec_support
+                                        , max = xvec_mode)
+                                  , runif(n = num_sample_pts_mode
+                                          , min = xvec_mode
+                                          , max = maxvec_support))
+    }
+
+    faux_InitChoose3_out <- list("init_sample_points" = choose_sample_points
+                                , "mode"              = xvec_mode
+                                , "support"           = inp_Dvec
+                                )
+}
+# set.seed(1)
+# g <- function(x){dnorm(x, mean = 0, sd = 1)}
+# y <- faux_InitChoose3(inp_gfun = g, inp_Dvec = c(0, Inf), inp_Initnumsampvec = 2)
+# y
+#
+#
+# g <- function(x){dnorm(x, mean = 0, sd = 1)}
+#
+# g <- function(x){2*exp(-2*x)}
+# xvec_mode <-  optim(method = "BFGS", fn = g)
+# xvec_mode
+# g(0)
+#
+#
+# f <- function(x) 2*exp(-2*x)
+# nlm(f = f, p = c(-10,10))
+
+# Define the proxy smallest lower bounds and largest upper bound
+def_faux_InitChoose_minLB <- -1e32
+def_faux_InitChoose_maxUB <- 1e32
+

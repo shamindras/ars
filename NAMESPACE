@@ -3,7 +3,7 @@
 export(ars)
 export(faux_AcceptRejectx)
 export(faux_CheckLogConcavity)
-export(faux_InitChoose3)
+export(faux_InitChoose)
 export(faux_SampleSkx)
 export(faux_Ukx)
 export(faux_Zj)
