@@ -5,10 +5,6 @@
 #' @param x A number indicates the x-axis of the points 
 #' @return the first derivative of h(x) at the point x 
 #' @export
-
-g<-function(x) x^2
 hPrime <-function(inp_g,x) {
   inp_g(x)+2
 }
-
-hPrime(g,x)

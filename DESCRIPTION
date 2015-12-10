@@ -1,10 +1,22 @@
 Package: ars
 Type: Package
-Title: What the package does (short line)
+Title: An R Implementation Of The Adaptive Rejection Sampling (ARS) Algorithm
 Version: 1.0
-Date: 2015-12-08
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
-Suggests: testthat
+Authors@R: c(
+    person("Hadley", "Wickham", , "hadley@rstudio.com", role = c("aut", "cre")),
+    person("Winston", "Chang", role = "aut"),
+    person("RStudio", role = "cph"),
+    person("R Core team", role = "ctb",
+      comment = "Some namespace and vignette code extracted from base R")
+    )
+Maintainer: Who to complain to <shamindra@berkeley.edu>
+LazyData: true
+URL: https://github.com/shamindras/ars.git
+Imports: 
+    stringr,
+    ggplot2
+Suggests: 
+    ggplot2
+Description: An R Implementation Of The Adaptive Rejection Sampling (ARS) Algorithm
+    This is based on the P. Wild and W. R. Gilks (1992) paper "Adaptive rejection sampling for Gibbs sampling"
+License: GPL-2

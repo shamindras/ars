@@ -6,4 +6,7 @@
 #' generation.
 #' @return n accepted sampling points. 
 #' @export
-ars <- function(n,g,D) { }
+ars <- function(n,g,D){
+    # UPDATE: Delete this code - just for checking roxygen2!
+    x <- 1
+ }

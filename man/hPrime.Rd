@@ -4,10 +4,10 @@
 \alias{hPrime}
 \title{Helper function to get first derivative of h(x)}
 \usage{
-hPrime(g, x)
+hPrime(inp_g, x)
 }
 \arguments{
-\item{g}{A function user wants to generate samples from. This function is
+\item{inp_g}{A function of x which the user wants to generate samples from. This function is
 used to calculate h(x)=ln(g(x)).}
 
 \item{x}{A number indicates the x-axis of the points}
