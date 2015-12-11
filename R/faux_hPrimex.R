@@ -7,7 +7,7 @@
 #' @export
 faux_hPrimex <- function(inp_gfun, inp_xvec)
 {
-  #inp_gfun must be a function
+  #inp_gfun must be a functionx
   if(!is.function(inp_gfun)){
     stop("inp_gfun must be a valid R function")
   }
