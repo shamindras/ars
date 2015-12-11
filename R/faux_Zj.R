@@ -8,7 +8,7 @@
 #' @return a vector of intersection of tangents 
 #' @export
 
-library('Oarray')
+#library('Oarray')
 faux_Zj <- function(x,g,D) 
 {
   #get the length of the vector x
