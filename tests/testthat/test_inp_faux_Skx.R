@@ -1,4 +1,4 @@
-context("faux_Skx: Check Inputs")
+context("test_inp_faux_Skx: Check Inputs")
 
 test_that("Inputs are Valid", {
   

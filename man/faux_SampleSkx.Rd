@@ -2,23 +2,20 @@
 % Please edit documentation in R/faux_SampleSkx.R
 \name{faux_SampleSkx}
 \alias{faux_SampleSkx}
-\title{Helper function to sample a value x*from $s_{k}(x)$}
+\title{Helper function to sample a value x*from \eqn{s_{k}(x)}}
 \usage{
-faux_SampleSkx(inp_xvec, inp_zvec, inp_gfun)
+faux_SampleSkx(inp_uintervallist, inp_sfunlist)
 }
 \arguments{
-\item{inp_xvec}{A vector of x values of all points}
+\item{inp_uintervallist}{A list of intervals between z points}
 
-\item{inp_zvec}{A vector of z values of all points and we should be able to get 
-the index of z}
-
-\item{inp_gfun}{A function user wants to generate samples from. This function is 
-used to calculate h(x)=ln(g(x))}
+\item{inp_sfunlist}{A list of functions which form the \eqn{s_{k}(x)}
+function}
 }
 \value{
-a x value sampling from function $s_{k}(x)$
+an x value sampled from the function \eqn{s_{k}(x)}
 }
 \description{
-Helper function to sample a value x*from $s_{k}(x)$
+Helper function to sample a value x*from \eqn{s_{k}(x)}
 }
 
