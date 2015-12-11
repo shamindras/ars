@@ -51,7 +51,7 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     # Solve for the mode of the density i.e. where the max occurs value
     # using optim
     xvec_mode <-  optim(par = c(init_optim_est), method = "L-BFGS-B"
-                        , fn = inp_gfun)$value
+                        , fn = inp_gfun)$par
 
     # Now we just need to sample specified number of points from the function
     # on either side of the mode but bounded by the support
@@ -92,29 +92,8 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
                                           , max = maxvec_support))
     }
 
-    faux_InitChoose3_out <- list("init_sample_points" = choose_sample_points
+    faux_InitChoose_out <- list("init_sample_points" = choose_sample_points
                                 , "mode"              = xvec_mode
                                 , "support"           = inp_Dvec
                                 )
 }
-# set.seed(1)
-# g <- function(x){dnorm(x, mean = 0, sd = 1)}
-# y <- faux_InitChoose3(inp_gfun = g, inp_Dvec = c(0, Inf), inp_Initnumsampvec = 2)
-# y
-#
-#
-# g <- function(x){dnorm(x, mean = 0, sd = 1)}
-#
-# g <- function(x){2*exp(-2*x)}
-# xvec_mode <-  optim(method = "BFGS", fn = g)
-# xvec_mode
-# g(0)
-#
-#
-# f <- function(x) 2*exp(-2*x)
-# nlm(f = f, p = c(-10,10))
-
-# Define the proxy smallest lower bounds and largest upper bound
-def_faux_InitChoose_minLB <- -1e32
-def_faux_InitChoose_maxUB <- 1e32
-

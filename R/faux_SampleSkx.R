@@ -8,5 +8,4 @@
 #' @return a x value sampling from function $s_{k}(x)$
 #' @export
 faux_SampleSkx <- function(inp_xvec, inp_zvec, inp_gfun){
-
 }

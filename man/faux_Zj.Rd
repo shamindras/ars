@@ -4,16 +4,16 @@
 \alias{faux_Zj}
 \title{Helper function to get the intersection of tangents at $x_{j}$ and $x_{j+1}$}
 \usage{
-faux_Zj(x, g, D)
+faux_Zj(inp_xvec, inp_gfun, inp_Dvec)
 }
 \arguments{
-\item{x}{A vector of x values of your points. The vector is ordered in an
+\item{inp_xvec}{A vector of x values of your points. The vector is ordered in an
 increasing order.}
 
-\item{g}{A fucntion user wants to generate samples from. This function is
+\item{inp_gfun}{A fucntion user wants to generate samples from. This function is
 used to calculate h(x)=ln(g(x))}
 
-\item{D}{A vector with 2 elements indicating the domain the function g}
+\item{inp_Dvec}{A vector with 2 elements indicating the domain the function g}
 }
 \value{
 a vector of intersection of tangents

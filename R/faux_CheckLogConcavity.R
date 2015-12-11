@@ -8,5 +8,4 @@
 #' @return boolean value TRUE or FALSE to indicate the log concavity 
 #' @export
 faux_CheckLogConcavity <- function(inp_xvec, inp_gfun){ 
-
 }
