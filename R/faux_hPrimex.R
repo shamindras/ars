@@ -7,6 +7,14 @@
 #' @export
 faux_hPrimex <- function(inp_gfun, inp_xvec)
 {
+  #inp_gfun must be a function
+  if(!is.function(inp_gfun)){
+    stop("inp_gfun must be a valid R function")
+  }
+  #inp_xvec must be numeric and contains at least 1 elements 
+  if(length(inp_xvec) < 1 | !is.numeric(inp_xvec)){
+    stop("inp_xvec must be at least 1 numeric elements")
+  }
   h_x <- faux_hx(inp_gfun)
   # the derivative is approximately (h(inp_xvec+faux_hPrimex_tol)-h(inp_xvec)) /
   #                                 faux_hPrimex_tol
