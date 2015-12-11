@@ -20,6 +20,6 @@ faux_uInterval <- function(inp_z) {
   
   # create a list where each element of the list is a row from the matrix
   faux_uInterval_out <- as.list(data.frame(t(z)))
-  
+  names(faux_uInterval_out) <- NULL
   return(faux_uInterval_out)
 }
