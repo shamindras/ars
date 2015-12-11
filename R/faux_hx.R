@@ -4,8 +4,7 @@
 #' This function is used to calculate h(x)=ln(g(x)).
 #' @return the h(x)
 #' @export
-faux_hx <- function(inp_gfun)
-{
+faux_hx <- function(inp_gfun){
   #inp_gfun must be a function
   if(!is.function(inp_gfun)){
     stop("inp_gfun must be a valid R function")

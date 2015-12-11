@@ -37,7 +37,7 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     if(is.infinite(minvec_support) & is.infinite(maxvec_support)){
         support_classify <- "negInf_posInf"
         # Set a reasonable optimum interval
-        optim_interval   <- c(def_faux_InitChoose_optimmin
+        optim_intervalvec   <- c(def_faux_InitChoose_optimmin
                               , def_faux_InitChoose_optimmax)
         # Solve for the mode of the density i.e. where the max value occurs
         xvec_mode <- faux_findmode(optim_intervalvec = optim_intervalvec
@@ -45,7 +45,7 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     } else if (is.infinite(minvec_support) & !is.infinite(maxvec_support)){
         support_classify <- "negInf_posBnd"
         # Set a reasonable optimum interval
-        optim_interval   <- c(def_faux_InitChoose_optimmin
+        optim_intervalvec   <- c(def_faux_InitChoose_optimmin
                               , min(def_faux_InitChoose_optimmax, maxvec_support))
         # Solve for the mode of the density i.e. where the max value occurs
         xvec_mode <- faux_findmode(optim_intervalvec = optim_intervalvec
@@ -53,7 +53,7 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     } else if (!is.infinite(minvec_support) & is.infinite(maxvec_support)){
         support_classify <- "negBnd_posInf"
         # Set a reasonable optimum interval
-        optim_interval   <- c(max(def_faux_InitChoose_optimmin, minvec_support)
+        optim_intervalvec   <- c(max(def_faux_InitChoose_optimmin, minvec_support)
                               , def_faux_InitChoose_optimmax)
         # Solve for the mode of the density i.e. where the max value occurs
         xvec_mode <- faux_findmode(optim_intervalvec = optim_intervalvec
@@ -61,7 +61,7 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     } else {
         support_classify <- "negBnd_posBnd"
         # Set a reasonable optimum interval
-        optim_interval   <- c(max(def_faux_InitChoose_optimmin, minvec_support)
+        optim_intervalvec   <- c(max(def_faux_InitChoose_optimmin, minvec_support)
                               , min(def_faux_InitChoose_optimmax, maxvec_support))
         # Solve for the mode of the density i.e. where the max value occurs
         xvec_mode <- faux_findmode(optim_intervalvec = optim_intervalvec
