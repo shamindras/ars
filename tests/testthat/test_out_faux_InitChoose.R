@@ -22,5 +22,12 @@ test_that("Outputs are Validated", {
  expect_error(faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec
               , inp_Initnumsampvec = 3.5))
 
+# UPDATE: Come back and finish this!
+# inp_gfun    <- function(x) dnorm(x = x, mean = 7000, sd = 45)
+# inp_gfun    <- function(x) {2 - (x-5)^2}
+# inp_gfun    <- function(x) {2*exp(-2*x)}
+# inp_Dvec <- c(0, Inf)
+# test_faux_InitChoose <- faux_InitChoose(inp_gfun = inp_gfun, inp_Dvec = inp_Dvec)
+
 
 })

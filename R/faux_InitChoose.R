@@ -29,9 +29,6 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     minvec_support   <- inp_Dvec[1]
     maxvec_support   <- inp_Dvec[2]
 
-    # First get the gradient of the function - used for the mode
-    gradfun <- function(x){grad(inp_gfun, x)}
-
     # Based on the support function, determine the type of bounds specified
     # e.g. (-Inf, Inf) then = "negInf_posInf"
     # e.g. (-Inf, 10) then  = "negInf_posBnd"
@@ -39,28 +36,36 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     # e.g. (-13, 55) then =   "negBnd_posBnd"
     if(is.infinite(minvec_support) & is.infinite(maxvec_support)){
         support_classify <- "negInf_posInf"
+        # Set a reasonable optimum interval
+        optim_interval   <- c(def_faux_InitChoose_optimmin
+                              , def_faux_InitChoose_optimmax)
         # Solve for the mode of the density i.e. where the max value occurs
-        xvec_mode <- optimize(f = inp_gfun,interval = c(def_faux_InitChoose_minLB
-                                               , def_faux_InitChoose_maxUB)
-                              , maximum=TRUE)$maximum
+        xvec_mode <- faux_findmode(optim_intervalvec = optim_intervalvec
+                                   , inp_gfun = inp_gfun)$faux_findmode_par
     } else if (is.infinite(minvec_support) & !is.infinite(maxvec_support)){
         support_classify <- "negInf_posBnd"
+        # Set a reasonable optimum interval
+        optim_interval   <- c(def_faux_InitChoose_optimmin
+                              , min(def_faux_InitChoose_optimmax, maxvec_support))
         # Solve for the mode of the density i.e. where the max value occurs
-        xvec_mode <- optimize(f = inp_gfun,interval = c(def_faux_InitChoose_minLB
-                                               , maxvec_support)
-                              , maximum=TRUE)$maximum
+        xvec_mode <- faux_findmode(optim_intervalvec = optim_intervalvec
+                                   , inp_gfun = inp_gfun)$faux_findmode_par
     } else if (!is.infinite(minvec_support) & is.infinite(maxvec_support)){
         support_classify <- "negBnd_posInf"
+        # Set a reasonable optimum interval
+        optim_interval   <- c(max(def_faux_InitChoose_optimmin, minvec_support)
+                              , def_faux_InitChoose_optimmax)
         # Solve for the mode of the density i.e. where the max value occurs
-        xvec_mode <- optimize(f = inp_gfun,interval = c(minvec_support
-                                               , def_faux_InitChoose_maxUB)
-                              , maximum=TRUE)$maximum
+        xvec_mode <- faux_findmode(optim_intervalvec = optim_intervalvec
+                                   , inp_gfun = inp_gfun)$faux_findmode_par
     } else {
         support_classify <- "negBnd_posBnd"
+        # Set a reasonable optimum interval
+        optim_interval   <- c(max(def_faux_InitChoose_optimmin, minvec_support)
+                              , min(def_faux_InitChoose_optimmax, maxvec_support))
         # Solve for the mode of the density i.e. where the max value occurs
-        xvec_mode <- optimize(f = inp_gfun,interval = c(minvec_support
-                                               , maxvec_support)
-                              , maximum=TRUE)$maximum
+        xvec_mode <- faux_findmode(optim_intervalvec = optim_intervalvec
+                                   , inp_gfun = inp_gfun)$faux_findmode_par
     }
 
     # Now we just need to sample specified number of points from the function
@@ -73,14 +78,14 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
 
     if(support_classify == "negInf_posInf"){
         choose_sample_points <- c(runif(n = num_sample_pts_mode
-                                      , min = def_faux_InitChoose_minLB
+                                      , min = def_faux_InitChoose_negInf
                                       , max = xvec_mode)
                                   , runif(n = num_sample_pts_mode
                                           , min = xvec_mode
-                                          , max = def_faux_InitChoose_maxUB))
+                                          , max = def_faux_InitChoose_posInf))
     } else if (support_classify == "negInf_posBnd"){
         choose_sample_points <- c(runif(n = num_sample_pts_mode
-                                        , min = def_faux_InitChoose_minLB
+                                        , min = def_faux_InitChoose_negInf
                                         , max = xvec_mode)
                                   , runif(n = num_sample_pts_mode
                                           , min = xvec_mode
@@ -91,7 +96,7 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
                                         , max = xvec_mode)
                                   , runif(n = num_sample_pts_mode
                                           , min = xvec_mode
-                                          , max = def_faux_InitChoose_maxUB))
+                                          , max = def_faux_InitChoose_posInf))
     } else {
         choose_sample_points <- c(runif(n = num_sample_pts_mode
                                         , min = minvec_support
