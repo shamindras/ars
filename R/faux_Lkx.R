@@ -20,6 +20,8 @@ faux_Lkx <- function(inp_xvec,inp_gfun) {
   if(any(inp_xvec-sort(inp_xvec)!=0)){
     stop("inp_xvec must be increasing order")
   }
+  #sort vector of x in increasing order 
+  inp_xvec <- sort(inp_xvec)
   #length of inp_xvec 
   k <- length(inp_xvec)
   #vector a contains x1,x2,...x_{k-1}  
@@ -39,12 +41,14 @@ faux_Lkx <- function(inp_xvec,inp_gfun) {
   #initialize faux_Lkx_out 
   faux_Lkx_out <- c()
   #if x<x1, treat it as the first interval [-Inf, x1], the function is -Inf 
-  faux_Lkx_out[1] <- -Inf 
+  faux_Lkx_out[1] <- def_faux_Lkx_negInf 
   #if x>xk, treat it as the last interval [xk,Inf], the function is also -Inf
-  faux_Lkx_out[k+1] <- -Inf 
+  faux_Lkx_out[k+1] <- def_faux_Lkx_negInf 
   #output the list of functions 
   faux_Lkx_out[2:k] <- sapply(1:length(vec_a),getLk)
   #if x<x1, treat it as the first 
   return(as.list(faux_Lkx_out))
 }
+
+
 

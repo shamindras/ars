@@ -58,4 +58,4 @@ faux_Zj <- function(inp_xvec, inp_gfun, inp_Dvec)
   out_Zvec[2:k] <- vec_numerator/vec_denominator 
   #return values of z as a vector 
   return(out_Zvec)
-}
+  }
