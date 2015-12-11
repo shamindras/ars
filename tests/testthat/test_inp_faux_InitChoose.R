@@ -1,4 +1,4 @@
-context("Check Choice of initial 3 Sample Points")
+context("test_inp_faux_InitChoose: Check Choice of initial 3 Sample Points")
 
 test_that("Inputs are Validated", {
 
