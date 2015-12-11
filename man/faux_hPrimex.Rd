@@ -10,7 +10,7 @@ faux_hPrimex(inp_gfun, inp_xvec)
 \item{inp_gfun}{A function of x which the user wants to generate samples from.
 This function is used to calculate h(x)=ln(g(x)).}
 
-\item{inp_xvec}{A number indicates the x-axis of the points}
+\item{inp_xvec}{A number indicates the x-axis of the point}
 }
 \value{
 the first derivative of h(x) at the point x
