@@ -10,8 +10,8 @@
 #' @export
 faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
 
-    if(inp_Initnumsampvec %% 2 != 0){
-        stop("inp_Initnumsampvec must be an even integer")
+    if(inp_Initnumsampvec %% 2 != 0 | inp_Initnumsampvec < 0){
+        stop("inp_Initnumsampvec must be an even positive integer")
     }
     # Input validation with Error handling
     if(length(inp_Dvec) != 2 | !is.numeric(inp_Dvec)){
@@ -29,6 +29,9 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     minvec_support   <- inp_Dvec[1]
     maxvec_support   <- inp_Dvec[2]
 
+    # First get the gradient of the function - used for the mode
+    gradfun <- function(x){grad(inp_gfun, x)}
+
     # Based on the support function, determine the type of bounds specified
     # e.g. (-Inf, Inf) then = "negInf_posInf"
     # e.g. (-Inf, 10) then  = "negInf_posBnd"
@@ -36,22 +39,29 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     # e.g. (-13, 55) then =   "negBnd_posBnd"
     if(is.infinite(minvec_support) & is.infinite(maxvec_support)){
         support_classify <- "negInf_posInf"
-        init_optim_est   <- mean(def_faux_InitChoose_minLB, def_faux_InitChoose_maxUB)
+        # Solve for the mode of the density i.e. where the max value occurs
+        xvec_mode <- optimize(f = inp_gfun,interval = c(def_faux_InitChoose_minLB
+                                               , def_faux_InitChoose_maxUB)
+                              , maximum=TRUE)$maximum
     } else if (is.infinite(minvec_support) & !is.infinite(maxvec_support)){
         support_classify <- "negInf_posBnd"
-        init_optim_est   <- mean(def_faux_InitChoose_minLB, maxvec_support)
+        # Solve for the mode of the density i.e. where the max value occurs
+        xvec_mode <- optimize(f = inp_gfun,interval = c(def_faux_InitChoose_minLB
+                                               , maxvec_support)
+                              , maximum=TRUE)$maximum
     } else if (!is.infinite(minvec_support) & is.infinite(maxvec_support)){
         support_classify <- "negBnd_posInf"
-        init_optim_est   <- mean(minvec_support, def_faux_InitChoose_maxUB)
+        # Solve for the mode of the density i.e. where the max value occurs
+        xvec_mode <- optimize(f = inp_gfun,interval = c(minvec_support
+                                               , def_faux_InitChoose_maxUB)
+                              , maximum=TRUE)$maximum
     } else {
         support_classify <- "negBnd_posBnd"
-        init_optim_est   <- mean(minvec_support, maxvec_support)
+        # Solve for the mode of the density i.e. where the max value occurs
+        xvec_mode <- optimize(f = inp_gfun,interval = c(minvec_support
+                                               , maxvec_support)
+                              , maximum=TRUE)$maximum
     }
-
-    # Solve for the mode of the density i.e. where the max occurs value
-    # using optim
-    xvec_mode <-  optim(par = c(init_optim_est), method = "L-BFGS-B"
-                        , fn = inp_gfun)$par
 
     # Now we just need to sample specified number of points from the function
     # on either side of the mode but bounded by the support
@@ -68,7 +78,6 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
                                   , runif(n = num_sample_pts_mode
                                           , min = xvec_mode
                                           , max = def_faux_InitChoose_maxUB))
-        init_optim_est   <- mean(def_faux_InitChoose_minLB, def_faux_InitChoose_maxUB)
     } else if (support_classify == "negInf_posBnd"){
         choose_sample_points <- c(runif(n = num_sample_pts_mode
                                         , min = def_faux_InitChoose_minLB
@@ -92,6 +101,7 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
                                           , max = maxvec_support))
     }
 
+    # Return the output as required
     faux_InitChoose_out <- list("init_sample_points" = choose_sample_points
                                 , "mode"              = xvec_mode
                                 , "support"           = inp_Dvec
