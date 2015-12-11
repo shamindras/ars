@@ -2,7 +2,7 @@
 % Please edit documentation in R/faux_SampleSkx.R
 \name{faux_SampleSkx}
 \alias{faux_SampleSkx}
-\title{Helper function to sample a value x*from \eqn{s_{k}(x)}}
+\title{Helper function to sample a value x* from \eqn{s_{k}(x)}}
 \usage{
 faux_SampleSkx(inp_uintervallist, inp_sfunlist)
 }
@@ -13,9 +13,9 @@ faux_SampleSkx(inp_uintervallist, inp_sfunlist)
 function}
 }
 \value{
-an x value sampled from the function \eqn{s_{k}(x)}
+a value sampled from the function \eqn{s_{k}(x)}
 }
 \description{
-Helper function to sample a value x*from \eqn{s_{k}(x)}
+Helper function to sample a value x* from \eqn{s_{k}(x)}
 }
 
