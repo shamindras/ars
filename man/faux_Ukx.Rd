@@ -4,7 +4,7 @@
 \alias{faux_Ukx}
 \title{Helper function to get the upper bound linear function $u_{k}(x)$}
 \usage{
-faux_Ukx(inp_xvec, inp_zvec, inp_gfun)
+faux_Ukx(inp_xvec, inp_gfun)
 }
 \arguments{
 \item{inp_xvec}{A vector of x values of all points}
