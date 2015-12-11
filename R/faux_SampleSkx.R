@@ -1,9 +1,9 @@
-#' Helper function to sample a value x*from \eqn{s_{k}(x)}
+#' Helper function to sample a value x* from \eqn{s_{k}(x)}
 #' 
 #' @param inp_uintervallist A list of intervals between z points 
 #' @param inp_sfunlist A list of functions which form the \eqn{s_{k}(x)}
 #'  function
-#' @return an x value sampled from the function \eqn{s_{k}(x)}
+#' @return a value sampled from the function \eqn{s_{k}(x)}
 #' @export
 faux_SampleSkx <- function(inp_uintervallist, inp_sfunlist){
   
