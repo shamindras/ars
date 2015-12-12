@@ -1,6 +1,6 @@
 #' Helper function to check the log concavity
 #' 
-#' @param inp_xvec A vector of 3 consecutive x values \eqn{(x_{1}, x_{2}, x_{3})}
+#' @param inp_xvec A vector of x values \eqn{(x_{1}, x_{2}, x_{3})}
 #'    in the domain of the user supplied function \eqn{g(x)}
 #' @param inp_gfun A function user wants to generate samples from. This function is 
 #'    used to calculate h(x)=ln(g(x)). We can then test the log-concavity
@@ -20,9 +20,7 @@ faux_CheckLogConcavity <- function(inp_xvec, inp_gfun){
   }
   
   # inp_xvec must be in ascending order
-  if(sum(!(sort(inp_xvec) == inp_xvec)) > 1){
-    stop("inp_xvec must be in ascending order")
-  }
+  inp_xvec <- sort(inp_xvec)
   
   # Create h function from the g function that is input by the user
   h_x <- faux_hx(inp_gfun)

@@ -1,6 +1,6 @@
 context("test_inp_faux_InitChoose: Check Choice of initial 2 Sample Points")
 
-test_that("Inputs are Validated", {
+test_that("test_inp_faux_InitChoose: Inputs are Validated", {
 
  # Test 1
  g    <- function(x) x^2 # valid function 
