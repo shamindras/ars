@@ -1,6 +1,6 @@
 context("test_out_faux_Skx: Check output of Skx is a list of functions")
 
-test_that("Outputs are Validated", {
+test_that("Output is a valid list of functions making up Skx", {
   
   # Test 1 - Check that the output is a list
   uint <- list(c(1,2),c(2,3)) # valid interval input

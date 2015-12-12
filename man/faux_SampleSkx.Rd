@@ -7,7 +7,7 @@
 faux_SampleSkx(inp_uintervallist, inp_sfunlist)
 }
 \arguments{
-\item{inp_uintervallist}{A list of intervals between z points}
+\item{inp_uintervallist}{A list of intervals between the z points}
 
 \item{inp_sfunlist}{A list of functions which form the \eqn{s_{k}(x)}
 function}
