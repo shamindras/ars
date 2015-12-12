@@ -1,6 +1,6 @@
 context("test_out_faux_InitChoose: Check Initially chosen 2 sample points are reasonable")
 
-test_that("Outputs are Validated", {
+test_that("test_out_faux_InitChoose: Outputs are Validated", {
 
  # Test 1 - Check that we correctly sample 2 points as a default
  g    <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function 
@@ -19,6 +19,8 @@ test_that("Outputs are Validated", {
  #          a positive decimal number instead of a positive even integer
  g    <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function 
  Dvec <- c(-Inf, Inf)                               # valid Support 
+ # expect_that(faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec
+ #             , inp_Initnumsampvec = 3.5), throws_error()) 
  expect_error(faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec
               , inp_Initnumsampvec = 3.5))
  
@@ -34,7 +36,7 @@ test_that("Outputs are Validated", {
  g <- function(x) dchisq(x,10) # valid function
  Dvec <- c(0, Inf) # valid Support 
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
- expect_equal(out$mode,2, tolerance=.00001)
+ expect_equal(out$mode,8, tolerance=.00001)
  
  # Test 6 Check that the points chosen have correcty sloped tangent lines for 
  # the standard normal distribution

@@ -35,6 +35,7 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     # e.g. (-10, Inf) then =  "negBnd_posInf"
     # e.g. (-13, 55) then =   "negBnd_posBnd"
     if(is.infinite(minvec_support) & is.infinite(maxvec_support)){
+
         support_classify <- "negInf_posInf"
         # Set a reasonable optimum interval
         optim_intervalvec   <- c(def_faux_InitChoose_optimmin
@@ -76,39 +77,73 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     # The number of points to sample around mode
     num_sample_pts_mode  <- inp_Initnumsampvec/2
 
+    # Create the upper and lower bounds for the sample intervals
+    sample_interval <- c(max(xvec_mode - def_faux_InitChoose_xmodedist
+                             , def_faux_InitChoose_negInf
+                             , minvec_support)
+                         , min(xvec_mode + def_faux_InitChoose_xmodedist
+                               , def_faux_InitChoose_posInf
+                               , maxvec_support))
+
     if(support_classify == "negInf_posInf"){
         choose_sample_points <- c(runif(n = num_sample_pts_mode
-                                      , min = def_faux_InitChoose_negInf
+                                      , min = sample_interval[1]
                                       , max = xvec_mode)
                                   , runif(n = num_sample_pts_mode
                                           , min = xvec_mode
-                                          , max = def_faux_InitChoose_posInf))
+                                          , max = sample_interval[2]))
+        final_choose_sample_points <- sort(unique(choose_sample_points))
     } else if (support_classify == "negInf_posBnd"){
         choose_sample_points <- c(runif(n = num_sample_pts_mode
-                                        , min = def_faux_InitChoose_negInf
+                                        , min = sample_interval[1]
                                         , max = xvec_mode)
                                   , runif(n = num_sample_pts_mode
                                           , min = xvec_mode
-                                          , max = maxvec_support))
+                                          , max = sample_interval[2]))
+        final_choose_sample_points <- sort(unique(choose_sample_points))
     } else if (support_classify == "negBnd_posInf"){
         choose_sample_points <- c(runif(n = num_sample_pts_mode
-                                        , min = minvec_support
+                                        , min = sample_interval[1]
                                         , max = xvec_mode)
                                   , runif(n = num_sample_pts_mode
                                           , min = xvec_mode
-                                          , max = def_faux_InitChoose_posInf))
+                                          , max = sample_interval[2]))
+        final_choose_sample_points <- sort(unique(choose_sample_points))
     } else {
         choose_sample_points <- c(runif(n = num_sample_pts_mode
-                                        , min = minvec_support
+                                        , min = sample_interval[1]
                                         , max = xvec_mode)
                                   , runif(n = num_sample_pts_mode
                                           , min = xvec_mode
                                           , max = maxvec_support))
+        final_choose_sample_points <- sort(unique(choose_sample_points))
     }
 
     # Return the output as required
-    faux_InitChoose_out <- list("init_sample_points" = choose_sample_points
-                                , "mode"              = xvec_mode
-                                , "support"           = inp_Dvec
+    faux_InitChoose_out <- list("init_sample_points"    = final_choose_sample_points
+                                , "num_sample_pts_mode" = num_sample_pts_mode
+                                , "support_classify"    = support_classify
+                                , "optim_intervalvec"   = optim_intervalvec
+                                , "sample_interval"     = sample_interval
+                                , "mode"                = xvec_mode
+                                , "support"             = inp_Dvec
                                 )
 }
+
+
+# g <- function(x) dnorm(x, mean = 100, sd = 10) # valid function
+
+# g <- function(x) dchisq(x,10) # valid function
+# Dvec <- c(0, Inf) # valid Support
+# out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec, inp_Initnumsampvec = 4)
+# out
+
+# g <- function(x) 2*exp(-2*x) # valid function
+# Dvec <- c(0, Inf) # valid Support
+# out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec, inp_Initnumsampvec = 4)
+# unique(out[[1]])
+
+# g <- function(x) dunif(x, min = 0, max = 1) # valid function
+# Dvec <- c(0, 1) # valid Support
+# out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec, inp_Initnumsampvec = 4)
+# unique(out[[1]])
