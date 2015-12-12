@@ -1,10 +1,12 @@
-#' Helper function to get the intersection of tangents at $x_{j}$ and $x_{j+1}$
+#' Helper function to get the intersection of tangents at \eqn{x_{j}{} and
+#' \eqn{x_{j+1}}
 #'
-#' @param inp_xvec A vector of x values of your points. The vector is ordered in
-#' an increasing order.
+#' @param inp_xvec A vector of \eqn{x} values of your points. The vector is
+#' ordered in an increasing order.
 #' @param inp_gfun A fucntion user wants to generate samples from. This function 
-#' is used to calculate h(x)=ln(g(x))
-#' @param inp_Dvec A vector with 2 elements indicating the domain the function g
+#' is used to calculate \eqn{h(x)=\log(g(x))}
+#' @param inp_Dvec A vector with 2 elements indicating the domain the function
+#' \eqn{g}
 #' @return a vector of intersection of tangents
 #' @export
 faux_Zj <- function(inp_xvec, inp_gfun, inp_Dvec)

@@ -1,9 +1,9 @@
-#' Helper function to find mode of a given univariate function g(x)
+#' Helper function to find mode of a given univariate function \eqn{g(x)}
 #'
 #' @param optim_intervalvec A vector with two elements indicates the support domain of
 #'     the sample generation.
 #' @param inp_gfun A function of x which the user wants to generate samples from.
-#'     This function is used to calculate h(x)=ln(g(x)).
+#'     This function is used to calculate \eqn{h(x)=\log(g(x))}.
 #' @return two starting points.
 #' @export
 faux_findmode <- function(optim_intervalvec, inp_gfun){

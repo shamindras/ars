@@ -1,9 +1,9 @@
-#' Helper function to get first derivative of h(x)
+#' Helper function to get first derivative of \eqn{h(x)}
 #'
 #' @param inp_gfun A function of x which the user wants to generate samples from.
-#' This function is used to calculate h(x)=ln(g(x)).
+#' This function is used to calculate \eqn{h(x)=\log(g(x))}.
 #' @param inp_xvec A number indicates the x-axis of the point
-#' @return the first derivative of h(x) at the point x
+#' @return the first derivative of \eqn{h(x)} at the point \eqn{x}
 #' @export
 faux_hPrimex <- function(inp_gfun, inp_xvec)
 {

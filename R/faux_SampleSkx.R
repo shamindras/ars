@@ -1,6 +1,6 @@
-#' Helper function to sample a value x* from \eqn{s_{k}(x)}
+#' Helper function to sample a value \eqn{x^*} from \eqn{s_{k}(x)}
 #' 
-#' @param inp_uintervallist A list of intervals between the z points 
+#' @param inp_uintervallist A list of intervals between the \eqn{z} points 
 #' @param inp_sfunlist A list of functions which form the \eqn{s_{k}(x)}
 #'  function
 #' @return a value sampled from the function \eqn{s_{k}(x)}

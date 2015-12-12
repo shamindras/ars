@@ -2,9 +2,9 @@
 #'
 #' @param inp_xvec A vector of x values of all points
 #' @param inp_gfun A function user wants to generate samples from. This function is
-#'     used to calculate h(x)=ln(g(x))
+#'     used to calculate \eqn{h(x)=\log(g(x))}
 #' @return the upper bound linear function \eqn{u_{k}(x)} for x in the interval
-#' \eqn{[z_{j-1},z_{j}]} for j=1,...,k
+#' \eqn{[z_{j-1},z_{j}]} for \eqn{j=1,...,k}
 #' @export
 faux_Ukx <- function(inp_xvec, inp_gfun){
     #inp_gfun must be a function
