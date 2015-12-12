@@ -2,7 +2,7 @@
 % Please edit documentation in R/faux_Ukx.R
 \name{faux_Ukx}
 \alias{faux_Ukx}
-\title{Helper function to get the upper bound linear function $u_{k}(x)$}
+\title{Helper function to get the upper bound linear function \eqn{u_{k}(x)}}
 \usage{
 faux_Ukx(inp_xvec, inp_gfun)
 }
@@ -14,9 +14,9 @@ used to calculate h(x)=ln(g(x))}
 }
 \value{
 the upper bound linear function $u_{k}(x)$ for x in the interval
-[$z_{j-1}$,$z_{j}$]
+[$z_{j-1}$,$z_{j}$] for j=1,...,k
 }
 \description{
-Helper function to get the upper bound linear function $u_{k}(x)$
+Helper function to get the upper bound linear function \eqn{u_{k}(x)}
 }
 

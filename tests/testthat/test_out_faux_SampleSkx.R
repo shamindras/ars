@@ -1,6 +1,6 @@
 context("test_out_faux_SampleSkx: Check that the output is valid")
 
-test_that("Output is a valid number sampled from Skx", {
+test_that("Output of faux_SampleSkx is a valid number sampled from Skx", {
   
   # Test 1 - Check that the output is numeric
   uint <- list(c(-1,0),c(0,1)) # valid interval input

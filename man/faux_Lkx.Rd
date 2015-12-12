@@ -2,7 +2,7 @@
 % Please edit documentation in R/faux_Lkx.R
 \name{faux_Lkx}
 \alias{faux_Lkx}
-\title{Helper function to get the lower bound linear function $l_{k}(x)$}
+\title{Helper function to get the lower bound linear function \eqn{l_{k}(x)}}
 \usage{
 faux_Lkx(inp_xvec, inp_gfun)
 }
@@ -11,13 +11,13 @@ faux_Lkx(inp_xvec, inp_gfun)
 index of x}
 
 \item{inp_gfun}{A function user wants to generate samples from. This function is
-use to calculate h(x)=ln(g(x))}
+use to calculate \eqn{h(x)=\log(g(x))}}
 }
 \value{
-the lower bound linear function $l_{k}(x)$ for x in the interval
-[$x_{j}$,$x_{j+1}$]
+the lower bound linear function \eqn{l_{k}(x)} for x in the interval
+\eqn{[x_{j},x_{j+1}]}
 }
 \description{
-Helper function to get the lower bound linear function $l_{k}(x)$
+Helper function to get the lower bound linear function \eqn{l_{k}(x)}
 }
 
