@@ -10,6 +10,8 @@ faux_uInterval <- function(inp_z) {
     stop("inp_z must be a vector of z values")
   }
   
+  inp_z <- sort(inp_z)
+  
   # form a matrix with 2 columns where each column is an enpoint of an interval
   z <- cbind(inp_z[1:(length(inp_z)-1)],inp_z[2:length(inp_z)])
   
