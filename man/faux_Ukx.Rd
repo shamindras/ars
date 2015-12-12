@@ -14,7 +14,7 @@ used to calculate h(x)=ln(g(x))}
 }
 \value{
 the upper bound linear function $u_{k}(x)$ for x in the interval
-[$z_{j-1}$,$z_{j}$]
+[$z_{j-1}$,$z_{j}$] for j=1,...,k
 }
 \description{
 Helper function to get the upper bound linear function $u_{k}(x)$
