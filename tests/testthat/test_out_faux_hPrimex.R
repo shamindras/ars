@@ -16,7 +16,7 @@ test_that("Outputs are Validated", {
   
   # Test 3 - check that each element of the output is numeric 
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
-  Xvec <- c(5,20,35,41)  # valid x value 
+  Xvec <- c(-38,5,20,30)  # valid x value 
   y_test <- faux_hPrimex(inp_gfun = g, inp_xvec = Xvec)
   expect_equal(sapply(y_test,class),rep("numeric",length(Xvec)))
   
@@ -33,9 +33,9 @@ test_that("Outputs are Validated", {
   expect_equal(length(y_test),length(Xvec))
   
   #Test 6 - check that the output gives h'(x) evaluated at x 
-  g <- function(x) x^2 # valid function
-  Xvec <- c(6,14)  # valid x value
+  g <-  function(x) 2*exp(-2*x) # valid function
+  Xvec <- c(1:200)  # valid x value
   y_test <- faux_hPrimex(inp_gfun = g, inp_xvec = Xvec)
-  expect_equal(round(y_test,6),round(c((2*6)/(6^2),(2*14)/(14^2)),6))
+  expect_equal(y_test,rep(-2,length(Xvec)))
   
 })
