@@ -17,10 +17,6 @@ faux_Lkx <- function(inp_xvec,inp_gfun) {
   if(length(inp_xvec) < 2 | !is.numeric(inp_xvec)){
     stop("inp_xvec must be at least 2 numeric elements")
   }
-  #inp_xvec must be increasing order 
-  if(any(inp_xvec-sort(inp_xvec)!=0)){
-    stop("inp_xvec must be increasing order")
-  }
   
   #sort vector of x in increasing order 
   inp_xvec <- sort(inp_xvec)

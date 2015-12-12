@@ -3,8 +3,8 @@
 #' @param inp_xvec A vector of x values of all points
 #' @param inp_gfun A function user wants to generate samples from. This function is
 #'     used to calculate h(x)=ln(g(x))
-#' @return the upper bound linear function $u_{k}(x)$ for x in the interval
-#' [$z_{j-1}$,$z_{j}$] for j=1,...,k
+#' @return the upper bound linear function \eqn{u_{k}(x)} for x in the interval
+#' \eqn{[z_{j-1},z_{j}]} for j=1,...,k
 #' @export
 faux_Ukx <- function(inp_xvec, inp_gfun){
     #inp_gfun must be a function
@@ -15,10 +15,9 @@ faux_Ukx <- function(inp_xvec, inp_gfun){
     if(length(inp_xvec) < 2 | !is.numeric(inp_xvec)){
         stop("inp_xvec must be at least 2 numeric elements")
     }
-    #inp_xvec must be increasing order
-    if(any(inp_xvec-sort(inp_xvec)!=0)){
-        stop("inp_xvec must be increasing order")
-    }
+  
+    #inp_xvec must be in increasing order
+    inp_xvec <- sort(inp_xvec)
 
     # Get the expression of h(x)
     h_x <- faux_hx(inp_gfun)
