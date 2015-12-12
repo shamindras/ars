@@ -22,17 +22,40 @@ test_that("Outputs are Validated", {
  expect_error(faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec
               , inp_Initnumsampvec = 3.5))
  
- # Test 4 Check that the mode found in the function is correct
+ # Test 4 Check that the mode found in the function is correct for the standard
+ # normal distribution
  g <- function(x) dnorm(x) # valid function
  Dvec <- c(-Inf, Inf) # valid Support 
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
- expect_equal(out$mode,0)
+ expect_equal(out$mode,0, tolerance=.00001)
  
- # Test 5 Check that the points chosen have correcty sloped tangent lines
+ # Test 5 Check that the mode found in the function is correct for the chisquare
+ # distribution with 5 df, which means the mode should be 2.
+ g <- function(x) dchisq(x,10) # valid function
+ Dvec <- c(0, Inf) # valid Support 
+ out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
+ expect_equal(out$mode,2, tolerance=.00001)
+ 
+ # Test 6 Check that the points chosen have correcty sloped tangent lines for 
+ # the standard normal distribution
  g <- function(x) dnorm(x) # valid function
  Dvec <- c(-Inf, Inf) # valid Support 
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
- expect_that(faux_hPrimex(out$init_sample_points[1])>0,is_true())
+ expect_that(faux_hPrimex(function(x) dnorm(x),out$init_sample_points[1])>0,is_true())
+ expect_that(faux_hPrimex(function(x) dnorm(x),out$init_sample_points[2])<0,is_true())
+ 
+ # Test 7 Check that the points chosen have correcty sloped tangent lines
+ g <- function(x) {2*exp(-2*x)} # valid function
+ Dvec <- c(0, Inf) # valid Support 
+ out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
+ expect_that(faux_hPrimex(function(x) 2*exp(-2*x),out$init_sample_points[2])<0,is_true())
+ 
+ # Test 8 Check that the points chosen have correcty sloped tangent lines for
+ # the chisquare distribution with df=5
+ g <- function(x) dchisq(x, df=5) # valid function
+ Dvec <- c(0, Inf) # valid Support 
+ out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
+ expect_that(faux_hPrimex(function(x) 2*exp(-2*x),out$init_sample_points[2])<0,is_true())
  
 
 # UPDATE: Come back and finish this!

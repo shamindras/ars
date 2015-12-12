@@ -1,6 +1,6 @@
 context("test_inp_faux_Skx: Check Inputs")
 
-test_that("Inputs are Valid", {
+test_that("Inputs are Valid lists of intervals and functions", {
   
   # Test 1
   uint <- list(c(1,2),c(2,3)) # valid list of intervals
