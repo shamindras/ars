@@ -21,20 +21,8 @@ test_that("Inputs are Validated", {
   expect_error(faux_Ukx(inp_xvec = Xvec, inp_gfun = g))
   
   # Test 4
-  g    <- function(x) x^2 # valid function 
-  Xvec <- c(9,3)          # invalid vector should be increasing order 
-  # Expected error
-  expect_error(faux_Ukx(inp_xvec = Xvec, inp_gfun = g))
-  
-  # Test 5 
   g    <- function(x) x^2 #valid function 
-  Xvec <- c(8,5,9,10)     #invalid vector should be increasing order 
-  # Expected error
-  expect_error(faux_Ukx(inp_xvec = Xvec, inp_gfun = g))
-  
-  # Test 6
-  g    <- function(x) x^2 #valid function 
-  Xvec <- "a"             #invalid vector should be increasing order 
+  Xvec <- "a"             #invalid vector
   # Expected error
   expect_error(faux_Ukx(inp_xvec = Xvec, inp_gfun = g))
   

@@ -20,10 +20,4 @@ test_that("Inputs are validated", {
   # Expected error
   expect_error(faux_CheckLogConcavity(xvec,gfun))
   
-  # Test 4
-  xvec <- c(3,2,1)        # invalid vector; should be in ascending order
-  gfun <- function(x) x^2 # valid function
-  # Expected error
-  expect_error(faux_CheckLogConcavity(xvec,gfun))
-  
 })
