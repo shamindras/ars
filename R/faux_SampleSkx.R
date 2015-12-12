@@ -7,6 +7,11 @@
 #' @export
 faux_SampleSkx <- function(inp_uintervallist, inp_sfunlist){
   
+  # check that inp_uintervallist is the same length as inp_sfunlist
+  if(!(length(inp_sfunlist)==length(inp_uintervallist))){
+    stop("inp_uintervallist and inp_sfunlist must have the same length")
+  }
+  
   # check that inp_uintervallist is a list
   if(!(class(inp_uintervallist))=="list"){
     stop("inp_uintervallist must be a list")

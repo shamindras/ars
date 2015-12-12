@@ -30,4 +30,11 @@ test_that("Inputs are Valid lists of intervals and functions", {
   # Expected error
   expect_error(faux_SampleSkx(uint, inp_sfunlist))
   
+  # Test 5
+  uint <- list(c(1,2),c(2,3), c(3,4)) # valid list of intervals, length 3
+  inp_sfunlist <- list(function(x) x+1, function(x) 3*x+.5) 
+  # valid list of functions, length 2
+  # Expected error
+  expect_error(faux_Skx(uint, inp_sfunlist))
+  
 })
