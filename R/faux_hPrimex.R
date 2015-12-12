@@ -7,6 +7,7 @@
 #' @export
 faux_hPrimex <- function(inp_gfun, inp_xvec)
 {
+  #library('numDeriv')
   #inp_gfun must be a functionx
   if(!is.function(inp_gfun)){
     stop("inp_gfun must be a valid R function")
@@ -16,8 +17,6 @@ faux_hPrimex <- function(inp_gfun, inp_xvec)
     stop("inp_xvec must be at least 1 numeric elements")
   }
   h_x <- faux_hx(inp_gfun)
-  # the derivative is approximately (h(inp_xvec+faux_hPrimex_tol)-h(inp_xvec)) /
-  #                                 faux_hPrimex_tol
-  hPrimex_out <- (h_x(inp_xvec+faux_hPrimex_tol)-h_x(inp_xvec)) / faux_hPrimex_tol
+  hPrimex_out <- grad(h_x, inp_xvec)
   return(hPrimex_out)
 }
