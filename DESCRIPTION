@@ -18,9 +18,6 @@ Suggests:
     stringr
 Imports:
     numDeriv
-Suggests: 
-    stringr
->>>>>>> shamindra-inp_faux_InitChoose-remove-redundancy
 Description: An R Implementation Of The Adaptive Rejection Sampling (ARS)
     Algorithm This is based on the P. Wild and W. R. Gilks (1992) paper "Adaptive
     rejection sampling for Gibbs sampling"
