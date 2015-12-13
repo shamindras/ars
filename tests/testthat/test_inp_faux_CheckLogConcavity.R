@@ -1,6 +1,6 @@
 context("test_inp_faux_CheckLogConcavity: Check input validity of faux_CheckLogConcavity")
 
-test_that("Inputs are validated", {
+test_that("test_inp_faux_CheckLogConcavity: Inputs are validated", {
   
   # Test 1
   xvec <- c(1,2,3)        # valid vector

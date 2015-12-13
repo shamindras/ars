@@ -1,6 +1,6 @@
 context("test_inp_faux_SampleSkx: Check Inputs")
 
-test_that("Inputs for faux_SampleSkx are Valid lists of intervals and 
+test_that("test_inp_faux_SampleSkx: Valid lists of intervals and 
           functions", {
   
   # Test 1 

@@ -1,6 +1,6 @@
 context("test_inp_faux_Ukx: Check Input Validity of faux_Ukx")
 
-test_that("Inputs are Validated", {
+test_that("test_inp_faux_Ukx: Inputs are Validated", {
   
   # Test 1
   g    <- "x^2"           # invalid function 
