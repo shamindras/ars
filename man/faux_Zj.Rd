@@ -12,13 +12,15 @@ faux_Zj(inp_xvec, inp_gfun, inp_Dvec)
 ordered in an increasing order.}
 
 \item{inp_gfun}{A fucntion user wants to generate samples from. This function 
-is used to calculate \eqn{h(x)=\log(g(x))}}
+is used to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}}
 
 \item{inp_Dvec}{A vector with 2 elements indicating the domain the function
 \eqn{g}}
 }
 \value{
-a vector of intersection of tangents
+A numeric vector.
+The elements of the vector are the intersection points
+of \eqn{s_k(x)}{sk(x)}, the upper hull of the function \eqn{h(x)}.
 }
 \description{
 Helper function to get the intersection of tangents at \eqn{x_{j}} and

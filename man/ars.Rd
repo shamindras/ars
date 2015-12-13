@@ -15,7 +15,8 @@ ars(n, g, D)
 generation.}
 }
 \value{
-n accepted sampling points.
+A numeric vector of length \code{n}, each element of which is
+a value sampled from \eqn{g}.
 }
 \description{
 Main function to carry out simulation

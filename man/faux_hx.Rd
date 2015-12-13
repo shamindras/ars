@@ -2,18 +2,19 @@
 % Please edit documentation in R/faux_hx.R
 \name{faux_hx}
 \alias{faux_hx}
-\title{Helper function to get \eqn{h(x) = \log(g(x))}.}
+\title{Helper function to get \eqn{h(x) = \log(g(x))}{h(x) = ln(g(x))}.}
 \usage{
 faux_hx(inp_gfun)
 }
 \arguments{
 \item{inp_gfun}{A function of \eqn{x} which the user wants to generate samples from.
-This function is used to calculate \eqn{h(x)=\log(g(x))}.}
+This function is used to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}.}
 }
 \value{
-the \eqn{h(x)}
+The function \eqn{h(x) = \log(g(x))}{h(x) = ln(g(x))}.
+It takes as input the same input to \code{inp_gfun}.
 }
 \description{
-Helper function to get \eqn{h(x) = \log(g(x))}.
+Helper function to get \eqn{h(x) = \log(g(x))}{h(x) = ln(g(x))}.
 }
 

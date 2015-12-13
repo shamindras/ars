@@ -2,7 +2,7 @@
 % Please edit documentation in R/faux_Skx.R
 \name{faux_Skx}
 \alias{faux_Skx}
-\title{Helper function to create piecewise function \eqn{s_{k}(x)}}
+\title{Helper function to create piecewise function \eqn{s_{k}(x)}{sk(x)}}
 \usage{
 faux_Skx(inp_uintervallist, inp_ufunlist)
 }
@@ -13,11 +13,13 @@ output from uInterval.}
 \item{inp_ufunlist}{A list of functions, the output from uFun.}
 }
 \value{
-the function \eqn{s_{k}(x)} for all \eqn{x} in the domain of \eqn{g}, in list
-format, where each element of the list is one element of the piecewise 
-function.
+A list of functions.
+The length of the list is equal to the length of the inputs
+\code{inp_uintervallist} and \code{inp_ufunlist}.
+Each element of the list is one piece of the piecewise function
+\eqn{s_{k}(x)}{sk(x)}.
 }
 \description{
-Helper function to create piecewise function \eqn{s_{k}(x)}
+Helper function to create piecewise function \eqn{s_{k}(x)}{sk(x)}
 }
 

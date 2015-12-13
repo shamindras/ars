@@ -11,8 +11,9 @@ faux_uInterval(inp_z)
 \code{faux_Zj()}.}
 }
 \value{
-A list, with each element of the list an interval between 2
-\eqn{z} points
+A list of numeric vectors, each of length 2.
+The length of the list is one less than the length of the input \code{inp_z}.
+Each element of the list is an interval between 2 consecutive \eqn{z} points.
 }
 \description{
 Helper function to create the \eqn{z} intervals.

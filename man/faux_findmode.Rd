@@ -7,14 +7,19 @@
 faux_findmode(optim_intervalvec, inp_gfun)
 }
 \arguments{
-\item{optim_intervalvec}{A vector with two elements indicates the support domain of
-the sample generation.}
+\item{optim_intervalvec}{A vector with two elements indicates the support
+domain of the sample generation.}
 
-\item{inp_gfun}{A function of x which the user wants to generate samples from.
-This function is used to calculate \eqn{h(x)=\log(g(x))}.}
+\item{inp_gfun}{A function of \eqn{x} which the user wants to generate
+samples from.
+This function is used to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}.}
 }
 \value{
-two starting points.
+A list with three elements. 
+   \item{min_int}{The minimum of the parameter \code{optim_intervalvec}.}
+   \item{superStarSeed}{The point within
+   \code{optim_intervalvec} at which the optimization routine begins.}
+   \item{faux_findmode_par}{the mode of the function \code{inp_gfun}.}
 }
 \description{
 Helper function to find mode of a given univariate function \eqn{g(x)}

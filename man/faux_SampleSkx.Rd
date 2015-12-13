@@ -2,20 +2,21 @@
 % Please edit documentation in R/faux_SampleSkx.R
 \name{faux_SampleSkx}
 \alias{faux_SampleSkx}
-\title{Helper function to sample a value \eqn{x^*} from \eqn{s_{k}(x)}}
+\title{Helper function to sample a value \eqn{x^*}{x*} from \eqn{s_{k}(x)}{sk(x)}}
 \usage{
 faux_SampleSkx(inp_uintervallist, inp_sfunlist)
 }
 \arguments{
 \item{inp_uintervallist}{A list of intervals between the \eqn{z} points}
 
-\item{inp_sfunlist}{A list of functions which form the \eqn{s_{k}(x)}
+\item{inp_sfunlist}{A list of functions which form the \eqn{s_{k}(x)}{sk(x)}
 function}
 }
 \value{
-a value sampled from the function \eqn{s_{k}(x)}
+A named numeric vector of length 1.
+\item{faux_SampleSkx_out}{Value sampled from the function \eqn{s_{k}(x)}{sk(x)}}
 }
 \description{
-Helper function to sample a value \eqn{x^*} from \eqn{s_{k}(x)}
+Helper function to sample a value \eqn{x^*}{x*} from \eqn{s_{k}(x)}{sk(x)}
 }
 

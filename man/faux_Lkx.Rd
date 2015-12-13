@@ -2,7 +2,7 @@
 % Please edit documentation in R/faux_Lkx.R
 \name{faux_Lkx}
 \alias{faux_Lkx}
-\title{Helper function to get the lower bound linear function \eqn{l_{k}(x)}}
+\title{Helper function to get the lower bound linear function \eqn{l_{k}(x)}{lk(x)}.}
 \usage{
 faux_Lkx(inp_xvec, inp_gfun)
 }
@@ -11,13 +11,16 @@ faux_Lkx(inp_xvec, inp_gfun)
 index of \eqn{x}}
 
 \item{inp_gfun}{A function user wants to generate samples from. This function is
-use to calculate \eqn{h(x)=\log(g(x))}}
+use to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}}
 }
 \value{
-the lower bound linear function \eqn{l_{k}(x)} for \eqn{x} in the interval
-\eqn{[x_{j},x_{j+1}]}
+A list of functions.
+The length of the list is one greater than the length of the input
+\code{inp_xvec}.
+Each element of the list is a piece of the piecewise function
+\eqn{l_{k}(x)}{lk(x)}, which forms the lower hull of the function \eqn{h(x)}.
 }
 \description{
-Helper function to get the lower bound linear function \eqn{l_{k}(x)}
+Helper function to get the lower bound linear function \eqn{l_{k}(x)}{lk(x)}.
 }
 
