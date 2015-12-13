@@ -1,11 +1,16 @@
 #' Helper function to check the log concavity
 #' 
-#' @param inp_xvec A vector of x values \eqn{(x_{1}, x_{2}, x_{3})}
+#' @param inp_xvec A vector of x values
+#' \eqn{(x_{1}, x_{2}, x_{3})}{(x1, x2, x3)}
 #'    in the domain of the user supplied function \eqn{g(x)}
 #' @param inp_gfun A function user wants to generate samples from. This function is 
-#'    used to calculate \eqn{h(x)=\log(g(x))}. We can then test the log-concavity
-#'    at the 3 x-coordinates \eqn{(x_{1}, x_{2}, x_{3})}
-#' @return boolean value TRUE or FALSE to indicate the log concavity 
+#'    used to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}.
+#'    We can then test the log-concavity
+#'    at the 3 \eqn{x}-coordinates \eqn{(x_{1}, x_{2}, x_{3})}{(x1, x2, x3)}
+#' @return A logical vector of length 1:
+#'    TRUE if the slope of the secant between the first two points is
+#'    greater than or equal to the slope of the secant between the second
+#'    two points; FALSE otherwise. 
 #' @export
 faux_CheckLogConcavity <- function(inp_xvec, inp_gfun){ 
   

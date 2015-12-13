@@ -1,10 +1,12 @@
-#' Helper function to create piecewise function \eqn{s_{k}(x)}
+#' Helper function to create piecewise function \eqn{s_{k}(x)}{sk(x)}
 #' @param inp_uintervallist A list of intervals between \eqn{z} values, as in the 
 #' output from uInterval.
 #' @param inp_ufunlist A list of functions, the output from uFun.
-#' @return the function \eqn{s_{k}(x)} for all \eqn{x} in the domain of \eqn{g}, in list
-#' format, where each element of the list is one element of the piecewise 
-#' function.
+#' @return A list of functions.
+#' The length of the list is equal to the length of the inputs
+#' \code{inp_uintervallist} and \code{inp_ufunlist}.
+#' Each element of the list is one piece of the piecewise function
+#' \eqn{s_{k}(x)}{sk(x)}.
 #' @export
 faux_Skx <- function(inp_uintervallist, inp_ufunlist) {
   

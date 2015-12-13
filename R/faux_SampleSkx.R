@@ -1,9 +1,10 @@
-#' Helper function to sample a value \eqn{x^*} from \eqn{s_{k}(x)}
+#' Helper function to sample a value \eqn{x^*}{x*} from \eqn{s_{k}(x)}{sk(x)}
 #' 
 #' @param inp_uintervallist A list of intervals between the \eqn{z} points 
-#' @param inp_sfunlist A list of functions which form the \eqn{s_{k}(x)}
+#' @param inp_sfunlist A list of functions which form the \eqn{s_{k}(x)}{sk(x)}
 #'  function
-#' @return a value sampled from the function \eqn{s_{k}(x)}
+#' @return A named numeric vector of length 1.
+#' \item{faux_SampleSkx_out}{Value sampled from the function \eqn{s_{k}(x)}{sk(x)}}
 #' @export
 faux_SampleSkx <- function(inp_uintervallist, inp_sfunlist){
   

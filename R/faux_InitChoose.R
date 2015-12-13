@@ -1,12 +1,20 @@
 #' Helper function to choose two starting points
 #'
 #' @param inp_gfun A function user wants to generate samples from. This function
-#' is used to calculate \eqn{h(x)=\log(g(x))}
+#' is used to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}
 #' @param inp_Dvec A vector with two elements indicates the support domain of
 #'     the sample generation.
 #' @param inp_Initnumsampvec An even integer determining the number of points to
 #'     initially sample - should be even
-#' @return two starting points.
+#' @return A list with 7 elements.
+#' \item{init_sample_points}{}
+#' \item{num_sample_pts_mode}{}
+#' \item{support_classify}{}
+#' \item{optim_intervalvec}{}
+#' \item{sample_interval}{}
+#' \item{mode}{}
+#' \item{support}{The support of the function \code{inp_gfun}.
+#' Equivalent to \code{inp_Dvec} but in ascending order.}
 #' @export
 faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
 
