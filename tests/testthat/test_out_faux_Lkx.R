@@ -1,6 +1,6 @@
 context("test_out_faux_Lkx: Check Output of faux_Lkx")
 
-test_that("Outputs are Validated", {
+test_that("test_out_faux_Lkx: Outputs are Validated", {
   
   # Test 1 - Check that the output is a list 
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function

@@ -1,6 +1,6 @@
 context("test_out_faux_uInterval: Check output of uInterval")
 
-test_that("Outputs are Validated", {
+test_that("test_out_faux_uInterval: Outputs are Validated", {
   
   # Test 1 - Check that the output is a list
   zvals <- c(1,2,4,6) # valid input for z values
