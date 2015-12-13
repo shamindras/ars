@@ -10,12 +10,12 @@ test_that("test_inp_faux_SampleSkx: Valid lists of intervals and
   # Expected error
   expect_error(faux_SampleSkx(uint, inp_sfunlist))
   
-#   # Test 2
-#   uint <- list(c(-1,0),c(0,1)) # invalid format for intervals
-#   inp_sfunlist <- c(function(x) x+3, function(x) 3-x) # invalid format for 
-#   # inp_sfunlist, needs to be a list
-#   # Expected error
-#   expect_error(faux_SampleSkx(uint, inp_sfunlist))
+  # Test 2
+  uint <- list(c(-1,0),c(0,1)) # valid format for intervals
+  inp_sfunlist <- data.frame(function(x) x+3, function(x) 3-x) # invalid format for 
+  # inp_sfunlist, needs to be a list
+  # Expected error
+  expect_error(faux_SampleSkx(uint, inp_sfunlist))
   
   # Test 3
   uint <- c(c(1,2,5),c(2,3)) # invalid length of intervals
