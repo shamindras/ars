@@ -10,16 +10,25 @@
 #' @export
 faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
 
+    # Input validation with Error handling
     if(inp_Initnumsampvec %% 2 != 0 | inp_Initnumsampvec < 0){
         stop("inp_Initnumsampvec must be an even positive integer")
     }
-    # Input validation with Error handling
+    # Check that the user enters a support with exactly 2 elements
     if(length(inp_Dvec) != 2 | !is.numeric(inp_Dvec)){
         stop("inp_Dvec must be 2 numeric elements")
     }
+    # Check that the first element of the inp_Dvec is less than the second 
+    # element
+    if(inp_Dvec[1] >= inp_Dvec[2]){
+        stop("First element of inp_Dvec support interval must be greater 
+            than the second element")
+    }
+
+    # Check that the inp_gfun is a valid R function
     if(!is.function(inp_gfun)){
         stop("inp_gfun must be a valid R function")
-    }
+    }    
   
     # inp_Dvec must be in ascending order
     inp_Dvec <- sort(inp_Dvec)
