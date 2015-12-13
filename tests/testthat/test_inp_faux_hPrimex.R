@@ -1,6 +1,6 @@
 context("test_inp_faux_hPrimex: Check Input Validity of faux_hPrimex")
 
-test_that("Inputs are Validated", {
+test_that("test_inp_faux_hPrimex: Inputs are Validated", {
   
   # Test 1
   g    <- function(x) x^2 # valid function 
