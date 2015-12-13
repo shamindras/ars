@@ -17,13 +17,12 @@ faux_InitChoose <- function(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2){
     if(length(inp_Dvec) != 2 | !is.numeric(inp_Dvec)){
         stop("inp_Dvec must be 2 numeric elements")
     }
-    if(length(inp_Dvec) == 2 & is.numeric(inp_Dvec) & (inp_Dvec[1] >= inp_Dvec[2])){
-        stop("inp_Dvec must be 2 numeric elements, first element smaller than
-             the second element")
-    }
     if(!is.function(inp_gfun)){
         stop("inp_gfun must be a valid R function")
     }
+  
+    # inp_Dvec must be in ascending order
+    inp_Dvec <- sort(inp_Dvec)
 
     # User specified min/ max support
     minvec_support   <- inp_Dvec[1]
