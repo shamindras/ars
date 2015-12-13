@@ -4,7 +4,8 @@
 #' @param g A function user wants to generate samples from. 
 #' @param D A vector with two elements indicates the domain of the sample 
 #' generation.
-#' @return n accepted sampling points. 
+#' @return A numeric vector of length \code{n}, each element of which is
+#' a value sampled from \eqn{g}. 
 #' @export
 ars <- function(n,g,D){
  }

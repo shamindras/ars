@@ -1,11 +1,14 @@
-#' Helper function to get the lower bound linear function \eqn{l_{k}(x)}
+#' Helper function to get the lower bound linear function \eqn{l_{k}(x)}{lk(x)}.
 #'
 #' @param inp_xvec A vector of x values of all points and we should be able to get the
 #' index of \eqn{x}
 #' @param inp_gfun A function user wants to generate samples from. This function is
-#' use to calculate \eqn{h(x)=\log(g(x))}
-#' @return the lower bound linear function \eqn{l_{k}(x)} for \eqn{x} in the interval
-#' \eqn{[x_{j},x_{j+1}]}
+#' use to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}
+#' @return A list of functions.
+#' The length of the list is one greater than the length of the input
+#' \code{inp_xvec}.
+#' Each element of the list is a piece of the piecewise function
+#' \eqn{l_{k}(x)}{lk(x)}, which forms the lower hull of the function \eqn{h(x)}.
 #' @export
 faux_Lkx <- function(inp_xvec, inp_gfun) {
   

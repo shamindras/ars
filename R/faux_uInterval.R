@@ -1,8 +1,9 @@
 #' Helper function to create the \eqn{z} intervals.
 #' @param inp_z A vector of \eqn{z} values, such as the output from
 #' \code{faux_Zj()}.
-#' @return  A list, with each element of the list an interval between 2
-#' \eqn{z} points
+#' @return  A list of numeric vectors, each of length 2.
+#' The length of the list is one less than the length of the input \code{inp_z}.
+#' Each element of the list is an interval between 2 consecutive \eqn{z} points.
 #' @export
 
 faux_uInterval <- function(inp_z) {

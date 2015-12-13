@@ -1,8 +1,9 @@
-#' Helper function to get \eqn{h(x) = \log(g(x))}.
+#' Helper function to get \eqn{h(x) = \log(g(x))}{h(x) = ln(g(x))}.
 #'
 #' @param inp_gfun A function of \eqn{x} which the user wants to generate samples from.
-#' This function is used to calculate \eqn{h(x)=\log(g(x))}.
-#' @return the \eqn{h(x)}
+#' This function is used to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}.
+#' @return The function \eqn{h(x) = \log(g(x))}{h(x) = ln(g(x))}.
+#' It takes as input the same input to \code{inp_gfun}. 
 #' @export
 faux_hx <- function(inp_gfun){
   
