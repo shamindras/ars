@@ -62,7 +62,20 @@ faux_SampleSkx <- function(inp_uintervallist, inp_sfunlist){
   
   # use the uniroot function to solve for x such that F(x)=u
   rootfun <- function(z,u) cdf(z)-u
-  r <- uniroot(rootfun,interval=c(-5,5),tol=.001,u=U)$root
+  int <- c()
+  if(inp_uintervallist[[1]][1]<0 && inp_uintervallist[[length(inp_uintervallist)]][2]>0){
+    int <- c(-10,10)
+    ext <- "yes"
+  }
+  if(inp_uintervallist[[1]][1]==0 && inp_uintervallist[[length(inp_uintervallist)]][2]>0){
+    int <- c(0,100)
+    ext <- "upX"
+  }
+  if(inp_uintervallist[[1]][1]<0 && inp_uintervallist[[length(inp_uintervallist)]][2]==0){
+    int <- c(-100,0)
+    ext <- "downX"
+  }
+  r <- uniroot(rootfun,interval=int,extendInt=ext,u=U)$root
   return(faux_SampleSkx_out=r)
   
 }
