@@ -12,15 +12,18 @@ test_that("test_out_faux_Lkx: Outputs are Validated", {
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-10.5, 8.9, 111.6, 353.0)  #valid x value 
   y_test <- faux_Lkx(inp_xvec = Xvec, inp_gfun = g)
-  #get rid the of the first element and last element 
   expect_equal(sapply(y_test,class),
                rep("function",length(y_test)))
   
-  # Test 5 - check that the length of the list should be length(Xvec)+1
+  # Test 3 - check that the length of the list should be length(Xvec)+1
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-10.5, 5)  #valid x value 
   y_test <- faux_Lkx(inp_xvec = Xvec, inp_gfun = g)
   expect_equal(length(y_test), length(Xvec)+1)
+  
+  # Test 4 - Add in manual test for y_test[[1]](60) equals known value
+
+  # Test 5 - Add in manual test for evaluation of first element should be negInf
   
 })
 

@@ -18,6 +18,11 @@ faux_CheckLogConcavity <- function(inp_xvec, inp_gfun){
   if(length(inp_xvec) != 3 | !is.numeric(inp_xvec)){
     stop("inp_xvec must be exactly 3 numeric elements")
   }
+
+  # inp_xvec must be numeric and contain exactly 3 elements 
+  if(length(unique(inp_xvec)) != 3){
+    stop("inp_xvec must be exactly 3 unique numeric elements")
+  }
   
   # inp_xvec must be in ascending order
   inp_xvec <- sort(inp_xvec)
@@ -34,7 +39,11 @@ faux_CheckLogConcavity <- function(inp_xvec, inp_gfun){
   
   # Check if the first gradient is greater than or equal to the second,
   # which will be the case if h is concave
-  CheckLogConcavity_out <- g1 >= g2
+  CheckLogConcavity_out <- ifelse(identical(all.equal(g1, g2), TRUE)
+                                                   , TRUE
+                                                   , ifelse(g1 - g2 >= 0
+                                                            , TRUE
+                                                            , FALSE))
   
   return(CheckLogConcavity_out)
 }

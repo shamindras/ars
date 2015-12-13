@@ -7,7 +7,7 @@
 #' @return the lower bound linear function \eqn{l_{k}(x)} for \eqn{x} in the interval
 #' \eqn{[x_{j},x_{j+1}]}
 #' @export
-faux_Lkx <- function(inp_xvec,inp_gfun) {
+faux_Lkx <- function(inp_xvec, inp_gfun) {
   
   #inp_gfun must be a function
   if(!is.function(inp_gfun)){

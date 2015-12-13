@@ -15,14 +15,14 @@ test_that("test_inp_faux_Lkx: Inputs are Validated", {
   expect_error(faux_Lkx(inp_xvec = Xvec, inp_gfun = g))
   
   # Test 3
-  g    <- function(x) x^2 # valid function 
+  g    <- dnorm           # valid function 
   Xvec <- 3               # invalid vector x 
   # Expected error
   expect_error(faux_Lkx(inp_xvec = Xvec, inp_gfun = g))
   
   #Test 4
-  g    <- function(x) x^2 #valid function 
-  Xvec <- "a"             #invalid vector
+  g    <- function(x) 11*exp(-11*x) #valid function 
+  Xvec <- "a"                       #invalid vector
   # Expected error
   expect_error(faux_Lkx(inp_xvec = Xvec, inp_gfun = g))
   

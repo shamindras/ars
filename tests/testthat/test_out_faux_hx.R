@@ -17,5 +17,6 @@ test_that("test_out_faux_hx: Outputs are Validated", {
   y_test <- faux_hx(inp_gfun = g)
   expect_equal(y_test(100),log(2)-2*100)
   expect_equal(y_test(-200),log(2)+2*200)
+  # expect_equal(y_test(10000),log(2)-2*10000)
   
 })

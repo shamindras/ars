@@ -10,7 +10,7 @@ test_that("test_out_faux_Ukx: Outputs are Validated", {
   
   # Test 2 - check that the elements of the output are functions
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
-  Xvec <- c(-10.5, 8.9, 111.6, 353.0)  #valid x value 
+  Xvec <- c(-10.5, 8.9, 25, 22)  #valid x value 
   y_test <- faux_Ukx(inp_xvec = Xvec, inp_gfun = g)
   expect_equal(sapply(y_test,class),
                rep("function",length(y_test)))
