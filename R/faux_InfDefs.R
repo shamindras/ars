@@ -3,7 +3,7 @@
 # 1. FAUX_INITCHOOSE
 # 1a. Negative/ Positive Inf
 # def_faux_InitChoose_negInf        <- -1e+16
-# def_faux_InitChoose_posInf        <- -1e+16
+# def_faux_InitChoose_posInf        <- 1e+16
 
 # 1b. Maximum range to consider for optimization to calculate the mode (max) of g(x)
 # def_faux_InitChoose_optimmin      <- -1e4
