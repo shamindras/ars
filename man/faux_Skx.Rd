@@ -7,13 +7,13 @@
 faux_Skx(inp_uintervallist, inp_ufunlist)
 }
 \arguments{
-\item{inp_uintervallist}{A list of intervals between z values, as in the 
+\item{inp_uintervallist}{A list of intervals between \eqn{z} values, as in the 
 output from uInterval.}
 
 \item{inp_ufunlist}{A list of functions, the output from uFun.}
 }
 \value{
-the function \eqn{s_{k}(x)} for all x in the domain of g, in list
+the function \eqn{s_{k}(x)} for all \eqn{x} in the domain of \eqn{g}, in list
 format, where each element of the list is one element of the piecewise 
 function.
 }

@@ -2,17 +2,19 @@
 % Please edit documentation in R/faux_uInterval.R
 \name{faux_uInterval}
 \alias{faux_uInterval}
-\title{Helper function to create the z intervals.}
+\title{Helper function to create the \eqn{z} intervals.}
 \usage{
 faux_uInterval(inp_z)
 }
 \arguments{
-\item{inp_z}{A vector of z values, such as the output from faux_Zj().}
+\item{inp_z}{A vector of \eqn{z} values, such as the output from
+\code{faux_Zj()}.}
 }
 \value{
-A list, with each element of the list an interval between 2 z points
+A list, with each element of the list an interval between 2
+\eqn{z} points
 }
 \description{
-Helper function to create the z intervals.
+Helper function to create the \eqn{z} intervals.
 }
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/faux_findmode.R
 \name{faux_findmode}
 \alias{faux_findmode}
-\title{Helper function to find mode of a given univariate function g(x)}
+\title{Helper function to find mode of a given univariate function \eqn{g(x)}}
 \usage{
 faux_findmode(optim_intervalvec, inp_gfun)
 }
@@ -11,12 +11,12 @@ faux_findmode(optim_intervalvec, inp_gfun)
 the sample generation.}
 
 \item{inp_gfun}{A function of x which the user wants to generate samples from.
-This function is used to calculate h(x)=ln(g(x)).}
+This function is used to calculate \eqn{h(x)=\log(g(x))}.}
 }
 \value{
 two starting points.
 }
 \description{
-Helper function to find mode of a given univariate function g(x)
+Helper function to find mode of a given univariate function \eqn{g(x)}
 }
 

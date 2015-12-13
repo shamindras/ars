@@ -8,13 +8,13 @@ faux_Lkx(inp_xvec, inp_gfun)
 }
 \arguments{
 \item{inp_xvec}{A vector of x values of all points and we should be able to get the
-index of x}
+index of \eqn{x}}
 
 \item{inp_gfun}{A function user wants to generate samples from. This function is
 use to calculate \eqn{h(x)=\log(g(x))}}
 }
 \value{
-the lower bound linear function \eqn{l_{k}(x)} for x in the interval
+the lower bound linear function \eqn{l_{k}(x)} for \eqn{x} in the interval
 \eqn{[x_{j},x_{j+1}]}
 }
 \description{

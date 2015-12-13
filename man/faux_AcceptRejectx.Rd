@@ -14,11 +14,11 @@ faux_AcceptRejectx(inp_xvec, inp_zvec, inp_gfun)
 the index of z}
 
 \item{inp_gfun}{A function user wants to generate samples from. This function is 
-used to calculate h(x)=ln(g(x))}
+used to calculate \eqn{h(x)=\log(g(x))}}
 }
 \value{
 A vector of boolean value TRUE or FALSE indicating whether it's 
-    accepted and the value of x*
+    accepted and the value of \eqn{x^{*}}
 }
 \description{
 Helper function to check if the point is accepted as one of the generating

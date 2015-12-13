@@ -7,8 +7,8 @@
 faux_InitChoose(inp_gfun, inp_Dvec, inp_Initnumsampvec = 2)
 }
 \arguments{
-\item{inp_gfun}{A function user wants to generate samples from. This function is
-used to calculate h(x)=ln(g(x))}
+\item{inp_gfun}{A function user wants to generate samples from. This function
+is used to calculate \eqn{h(x)=\log(g(x))}}
 
 \item{inp_Dvec}{A vector with two elements indicates the support domain of
 the sample generation.}

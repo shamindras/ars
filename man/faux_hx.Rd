@@ -2,18 +2,18 @@
 % Please edit documentation in R/faux_hx.R
 \name{faux_hx}
 \alias{faux_hx}
-\title{Helper function to get h(x) = ln(g(x)).}
+\title{Helper function to get \eqn{h(x) = \log(g(x))}.}
 \usage{
 faux_hx(inp_gfun)
 }
 \arguments{
-\item{inp_gfun}{A function of x which the user wants to generate samples from.
-This function is used to calculate h(x)=ln(g(x)).}
+\item{inp_gfun}{A function of \eqn{x} which the user wants to generate samples from.
+This function is used to calculate \eqn{h(x)=\log(g(x))}.}
 }
 \value{
-the h(x)
+the \eqn{h(x)}
 }
 \description{
-Helper function to get h(x) = ln(g(x)).
+Helper function to get \eqn{h(x) = \log(g(x))}.
 }
 
