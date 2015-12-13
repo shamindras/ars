@@ -1,7 +1,7 @@
 context("test_out_faux_InitChoose: Check Initially
         chosen 2 sample points are reasonable")
 
-test_that("test_out_faux_InitChoose: Outputs are Validated", {
+test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Validated", {
 
  # Test 1 - Check that we correctly sample 2 points as a default
  g    <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function 
@@ -64,7 +64,23 @@ test_that("test_out_faux_InitChoose: Outputs are Validated", {
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
  expect_that(faux_hPrimex(function(x) 2*exp(-2*x),out$init_sample_points[2])<0,
              is_true())
- 
+
+ # g <- function(x) dnorm(x, mean = 100, sd = 10) # valid function
+
+# g <- function(x) dchisq(x,10) # valid function
+# Dvec <- c(0, Inf) # valid Support
+# out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec, inp_Initnumsampvec = 4)
+# out
+
+# g <- function(x) 2*exp(-2*x) # valid function
+# Dvec <- c(0, Inf) # valid Support
+# out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec, inp_Initnumsampvec = 4)
+# unique(out[[1]])
+
+# g <- function(x) dunif(x, min = 0, max = 1) # valid function
+# Dvec <- c(0, 1) # valid Support
+# out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec, inp_Initnumsampvec = 4)
+# unique(out[[1]]) 
 
 # UPDATE: Come back and finish this!
 # inp_gfun    <- function(x) dnorm(x = x, mean = 7000, sd = 45)
