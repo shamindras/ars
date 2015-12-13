@@ -53,16 +53,16 @@ faux_SampleSkx <- function(inp_uintervallist, inp_sfunlist){
   
   # use the inverse cdf method to sample a point x from skx
   if(const==1){
-    cdf <- function(z) integrate(inp_sfunlist[[const]],
-                                 inp_uintervallist[[const]][1],z)[[1]]
-  } else {
-    cdf <- function(z) sum(areas[c(1:(const-1))])+integrate(inp_sfunlist[[const]],
-                                                            inp_uintervallist[[const]][1],z)[[1]]
+    cdf <- function(z) integrate(inp_sfunlist[[const]], inp_uintervallist[[const]][1],z)[[1]]
+  }
+  if(const>1){
+    cdf <- function(z) sum(areas[c(1:(const-1))])+integrate(inp_sfunlist[[const]], 
+                                          inp_uintervallist[[const]][1],z)[[1]]
   }
   
   # use the uniroot function to solve for x such that F(x)=u
   rootfun <- function(z,u) cdf(z)-u
-  r <- uniroot(rootfun,interval=c(-1,1),u=U)$root
+  r <- uniroot(rootfun,interval=c(-5,5),tol=.001,u=U)$root
   return(faux_SampleSkx_out=r)
   
 }
