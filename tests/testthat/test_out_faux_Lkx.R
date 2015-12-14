@@ -3,12 +3,14 @@ context("test_out_faux_Lkx: Check Output of faux_Lkx")
 test_that("test_out_faux_Lkx: Outputs are Validated", {
   
   # Test 1 - Check that the output is a list 
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(3.5, 6.7)  #valid x value 
   y_test <- faux_Lkx(inp_xvec = Xvec, inp_gfun = g)
   expect_equal(class(y_test), "list")
   
   # Test 2 - check that the elements of the output are functions
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-10.5, 8.9, 111.6, 353.0)  #valid x value 
   y_test <- faux_Lkx(inp_xvec = Xvec, inp_gfun = g)
@@ -16,6 +18,7 @@ test_that("test_out_faux_Lkx: Outputs are Validated", {
                rep("function",length(y_test)))
   
   # Test 3 - check that the length of the list should be length(Xvec)+1
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-10.5, 5)  #valid x value 
   y_test <- faux_Lkx(inp_xvec = Xvec, inp_gfun = g)
@@ -24,6 +27,7 @@ test_that("test_out_faux_Lkx: Outputs are Validated", {
   # Test 4 - Test that the first element and last element in the list always 
   # return a function with constant value def-faux-Lkx-negInf na matter what 
   #value is passed in 
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-10.7,3.5,20.6)       #valid vector of x 
   y_test <- faux_Lkx(inp_xvec = Xvec, inp_gfun = g)
@@ -37,6 +41,7 @@ test_that("test_out_faux_Lkx: Outputs are Validated", {
   expect_equal(y_test[[length(y_test)]](-200000053423),def_faux_Lkx_negInf)
   
   # Test 5 - Test that the function works for the values we known 
+  set.seed(0)
   g <- function(x) {2*exp(-2*x)}        #Valid function 
   Xvec <- c(-5,-2,4,13,19)
   y_test <- faux_Lkx(inp_xvec = Xvec, inp_gfun = g)

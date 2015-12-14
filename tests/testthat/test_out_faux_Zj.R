@@ -3,6 +3,7 @@ context("test_out_faux_Zj: Check Output of faux_Zj")
 test_that("test_out_faux_Zj: Outputs are Validated", {
   
   # Test 1 - Check that the output is a numeric vector 
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(3.5, 6.7)  #valid x value 
   Dvec <- c(-Inf, Inf)                               # valid Support
@@ -11,6 +12,7 @@ test_that("test_out_faux_Zj: Outputs are Validated", {
   
   # Test 2 - check that each element of the output is numeric
   # If we have k x values, we should have k+1 z values 
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-7, 8.9)  #valid x value 
   Dvec <- c(-20, 10)                               # valid Support
@@ -19,6 +21,7 @@ test_that("test_out_faux_Zj: Outputs are Validated", {
   
   # Test 3 - check that the length of the output is the same as the length of x
   # plus 1
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-5,10.7)  # valid x value (2 elements)
   Dvec <- c(-Inf, Inf) # valid Support
@@ -27,6 +30,7 @@ test_that("test_out_faux_Zj: Outputs are Validated", {
   
   # Test 4 - check that the length of the output is the same as the length of x
   # plus 1
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-5,10.7,11.8,30.85)  # valid x value 
   Dvec <- c(-Inf, Inf) # valid Support
@@ -35,6 +39,7 @@ test_that("test_out_faux_Zj: Outputs are Validated", {
   
   # Test 5 - check that the first element of the output is the same as the 
   #first element of Dvec 
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-5,10.7,11.8,30.85)  # valid x value 
   Dvec <- c(-Inf, Inf) # valid Support
@@ -43,6 +48,7 @@ test_that("test_out_faux_Zj: Outputs are Validated", {
   
   # Test 6 - check that the last element of the output is the same as the 
   #first element of Dvec 
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-5,10.7,11.8,30.85)  # valid x value 
   Dvec <- c(-Inf, 400) # valid Support
@@ -51,6 +57,7 @@ test_that("test_out_faux_Zj: Outputs are Validated", {
   
   #Test 7 - check that the output gives correct values of Zj when h'(x) is 
   #the same everyhwere. We just take the Zj's to be midpoints of Xj and Xj+1
+  set.seed(0)
   g <- function(x) 2*exp(-2*x) # valid function
   Xvec <- c(3,5,8,15)  # valid x value 
   Dvec <- c(-10,20) # valid Support
@@ -62,6 +69,8 @@ test_that("test_out_faux_Zj: Outputs are Validated", {
   #different. For example, z[1]=D[1], z[2] in the interval(x[1],x[2]), 
   #z[3] in the interval (x[2],x[3]),z[4] in the interval (x[3],x[4]) and
   #z[5]=D[2]
+  
+  set.seed(0)
   g <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function
   Xvec <- c(-5,10.7,11.8,30.85)  # valid x value 
   Dvec <- c(-Inf, 400) # valid Support

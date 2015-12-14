@@ -3,6 +3,7 @@ context("test_out_ars: Check output of ars matches known distributions")
 test_that("test_out_ars: Outputs are Validated", {
   
   # Test 1 - Check that output of ars is normal when input is normal pdf
+  # set.seed(0)
   # n <- 1000
   # D <- c(-Inf,Inf)
   # out <- ars(n,dnorm,D)
@@ -10,6 +11,7 @@ test_that("test_out_ars: Outputs are Validated", {
   # expect_gt(p,0.01)
   # 
   # # Test 2 - Check that output of ars is exponential when input is exponential
+  # set.seed(0)
   # # pdf
   # n <- 1000
   # D <- c(0,Inf)
@@ -18,6 +20,7 @@ test_that("test_out_ars: Outputs are Validated", {
   # expect_gt(p,0.01)
   # 
   # # Test 3 - Check that output of ars is uniform when input is uniform pdf
+  # set.seed(0)
   # n <- 1000
   # D <- c(0,1)
   # out <- ars(n,dunif,D)

@@ -4,6 +4,7 @@ context("test_out_faux_InitChoose: Check Initially
 test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Validated", {
 
  # Test 1 - Check that we correctly sample 2 points as a default
+  set.seed(0)
  g    <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function 
  Dvec <- c(-Inf, Inf)                               # valid Support
  y_test <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
@@ -11,6 +12,7 @@ test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Valid
 
  # Test 2 - Check that we correctly sample 4 points if specified
  #          Should pass as 4 points is an even integer
+ set.seed(0)
  g    <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function 
  Dvec <- c(-Inf, Inf)                               # valid Support
  y_test <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec, 
@@ -19,6 +21,7 @@ test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Valid
 
  # Test 3 - Check that we get an error if we try and initialise with
  #          a positive decimal number instead of a positive even integer
+ set.seed(0)
  g    <- function(x) dnorm(x = x, mean = 0, sd = 1) # valid function 
  Dvec <- c(-Inf, Inf)                               # valid Support 
  # expect_that(faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec
@@ -28,6 +31,7 @@ test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Valid
  
  # Test 4 Check that the mode found in the function is correct for the standard
  # normal distribution
+ set.seed(0)
  g <- function(x) dnorm(x) # valid function
  Dvec <- c(-Inf, Inf) # valid Support 
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
@@ -35,6 +39,7 @@ test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Valid
  
  # Test 5 Check that the mode found in the function is correct for the chisquare
  # distribution with 5 df, which means the mode should be 2.
+ set.seed(0)
  g <- function(x) dchisq(x,10) # valid function
  Dvec <- c(0, Inf) # valid Support 
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
@@ -42,6 +47,7 @@ test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Valid
  
  # Test 6 Check that the points chosen have correcty sloped tangent lines for 
  # the standard normal distribution
+ set.seed(0)
  g <- function(x) dnorm(x) # valid function
  Dvec <- c(-Inf, Inf) # valid Support 
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
@@ -51,6 +57,7 @@ test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Valid
              is_true())
  
  # Test 7 Check that the points chosen have correcty sloped tangent lines
+ set.seed(0)
  g <- function(x) {2*exp(-2*x)} # valid function
  Dvec <- c(0, Inf) # valid Support 
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)
@@ -59,6 +66,7 @@ test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Valid
  
  # Test 8 Check that the points chosen have correcty sloped tangent lines for
  # the chisquare distribution with df=5
+ set.seed(0)
  g <- function(x) dchisq(x, df=5) # valid function
  Dvec <- c(0, Inf) # valid Support 
  out <- faux_InitChoose(inp_gfun = g, inp_Dvec = Dvec)

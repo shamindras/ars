@@ -5,6 +5,7 @@ test_that("test_out_InitChoose_HPrime: Outputs are Validated", {
   # Test 1 - check that when the initial points are generated, hPrime(x) does 
   # not produce NA values 
   # Initial points lies in between (-30, 30)
+  set.seed(0)
   inp_gfun <- function(x) {(2*pi)^(-0.5)*exp(-0.5*(x)^2)}     #valid function
   inp_Dvec <- c(-Inf,Inf)                                      #valid input 
   y_test <- faux_InitChoose(inp_gfun,inp_Dvec,200000)$init_sample_points
@@ -14,6 +15,7 @@ test_that("test_out_InitChoose_HPrime: Outputs are Validated", {
   
   # Test 2 - check that when the initial points are generated, hPrime(x) does 
   # not produce NA values 
+  set.seed(0)
   inp_gfun <- dnorm                                         #valid function
   inp_Dvec <- c(-3,5)                                      #valid input 
   y_test <- faux_InitChoose(inp_gfun,inp_Dvec,6)$init_sample_points
@@ -23,6 +25,7 @@ test_that("test_out_InitChoose_HPrime: Outputs are Validated", {
   
   # Test 3 - check that when the initial points are generated, hPrime(x) does 
   # not produce NA values 
+  set.seed(0)
   inp_gfun <- function(x) dchisq(x, df = 5)                  #valid function
   inp_Dvec <- c(0, Inf)                                      #valid input 
   y_test <- faux_InitChoose(inp_gfun,inp_Dvec,6)$init_sample_points
@@ -39,6 +42,7 @@ test_that("test_out_InitChoose_HPrime: Outputs are Validated", {
   # Test 4 - check that when the initial points are generated, hPrime(x) does 
   # not produce NA values 
   # Chi-square distribution in explicit form chisq(df=10)
+  set.seed(0)
   inp_gfun <- function(x) 1/(2^(10/2)*gamma(10/2))*x^(4)*exp(-x/2) #valid function
   inp_Dvec <- c(0, Inf)                                      #valid input 
   y_test <- faux_InitChoose(inp_gfun,inp_Dvec,10)$init_sample_points
