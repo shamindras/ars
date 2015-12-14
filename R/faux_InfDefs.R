@@ -18,6 +18,11 @@
 # 3. FAUX_LKX
 # def_faux_Lkx_negInf               <- -1e+16
 
+# 4. FAUX_CHECKLOGCONCAVITY
+# def_faux_CheckLogConcavity_Dmax    <- 30
+# def_faux_CheckLogConcavity_Dmin    <- -30
+# def_faux_CheckLogConcavity_nPoints <- 1e3
+
 # Load the Infinity definitions into the dataset
 # devtools::use_data(def_faux_InitChoose_negInf     , overwrite = TRUE)
 # devtools::use_data(def_faux_InitChoose_posInf     , overwrite = TRUE)
