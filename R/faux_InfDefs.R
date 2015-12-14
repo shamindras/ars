@@ -13,6 +13,7 @@
 # 2. FAUX_HPRIMEX
 # 2a. Tolerance for calculating numerical derivatives in FAUX_HPRIMEX
 # faux_hPrimex_tol                  <- 1e-06
+# def_faux_hPrime_Perturb             <- 1e-04
 
 # 3. FAUX_LKX
 # def_faux_Lkx_negInf               <- -1e+16
@@ -25,3 +26,4 @@
 # devtools::use_data(def_faux_InitChoose_xmodedist  , overwrite = TRUE)
 # devtools::use_data(faux_hPrimex_tol               , overwrite = TRUE)
 # devtools::use_data(def_faux_Lkx_negInf            , overwrite = TRUE)
+# devtools::use_data(def_faux_hPrime_Perturb        , overwrite = TRUE)

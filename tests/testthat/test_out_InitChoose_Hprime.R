@@ -6,6 +6,7 @@ test_that("test_out_InitChoose_HPrime: Outputs are Validated", {
   # not produce NA values 
   # Initial points lies in between (-30, 30)
   set.seed(0)
+  # Normal distribution in explicit form 
   inp_gfun <- function(x) {(2*pi)^(-0.5)*exp(-0.5*(x)^2)}     #valid function
   inp_Dvec <- c(-Inf,Inf)                                      #valid input 
   y_test <- faux_InitChoose(inp_gfun,inp_Dvec,200000)$init_sample_points
@@ -60,6 +61,38 @@ test_that("test_out_InitChoose_HPrime: Outputs are Validated", {
   hPrime_vec <- hPrime(y_test)
   expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
                                   hPrime_vec),TRUE))
+  
+  # Test 5 - check that when the initial points are generated, hPrime(x) does 
+  # not produce NA values 
+  # exponential distribution with lambda=5.5 
+  inp_gfun <- function(x) dexp(x, rate = 5.5)                  #valid function
+  inp_Dvec <- c(0, Inf)                                        #valid input 
+  y_test <- faux_InitChoose(inp_gfun,inp_Dvec,200)$init_sample_points
+  mode <- faux_InitChoose(inp_gfun, inp_Dvec,200)$mode
+  #For exponential distribution, mode = 0 
+  expect_equal(mode,0)
+  #h'(x) < 0 if x > mode 
+  #no x < mode since Domain is (0,Inf), mode = 0 
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test>mode]) < 0))
+  #The value of h'(x) should be -5.5 (calculated by hand)
+  expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
+                                   rep(-5.5,length(y_test))),TRUE))
+  
+  # Test 6 - check that when the initial points are generated, hPrime(x) does 
+  # not produce NA values 
+  # exponential distribution with lambda=8 in explicit form 
+  inp_gfun <- function(x) 8*exp(-8*x)                 #valid function
+  inp_Dvec <- c(0, Inf)                                   #valid input
+  y_test <- faux_InitChoose(inp_gfun,inp_Dvec,100)$init_sample_points
+  mode <- faux_InitChoose(inp_gfun, inp_Dvec,100)$mode
+  #For exponential distribution, mode = 0 
+  expect_equal(mode,0)
+  #h'(x) < 0 if x > mode 
+  #no x < mode since Domain is (0,Inf), mode = 0 
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test>mode]) < 0))
+  #The value of h'(x) should be -5.5 (calculated by hand)
+  expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
+                                  rep(-8,length(y_test))),TRUE))
 })
                                    
   
