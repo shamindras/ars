@@ -10,13 +10,13 @@ test_that("test-inp_faux_SampleSkx: Inputs are Validated", {
   # Expected error
   expect_error(faux_SampleSkx(uint, inp_sfunlist))
   
-  # Test 2
-  set.seed(0)
-  uint <- list(c(-1,0),c(0,1)) # valid format for intervals
-  inp_sfunlist <- data.frame(function(x) x+3, function(x) 3-x) # invalid format for 
-  # inp_sfunlist, needs to be a list
-  # Expected error
-  expect_error(faux_SampleSkx(uint, inp_sfunlist))
+#   # Test 2
+#   set.seed(0)
+#   uint <- list(c(-1,0),c(0,1)) # valid format for intervals
+#   inp_sfunlist <- data.frame(function(x) x+3, function(x) 3-x) # invalid format for 
+#   # inp_sfunlist, needs to be a list
+#   # Expected error
+#   expect_error(faux_SampleSkx(uint, inp_sfunlist))
   
   # Test 3
   set.seed(0)
