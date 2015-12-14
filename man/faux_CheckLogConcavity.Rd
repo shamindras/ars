@@ -4,23 +4,19 @@
 \alias{faux_CheckLogConcavity}
 \title{Helper function to check the log concavity}
 \usage{
-faux_CheckLogConcavity(inp_xvec, inp_gfun)
+faux_CheckLogConcavity(inp_gfun, inp_Dvec)
 }
 \arguments{
-\item{inp_xvec}{A vector of x values
-\eqn{(x_{1}, x_{2}, x_{3})}{(x1, x2, x3)}
-   in the domain of the user supplied function \eqn{g(x)}}
-
 \item{inp_gfun}{A function user wants to generate samples from. This function is 
-used to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}.
-We can then test the log-concavity
-at the 3 \eqn{x}-coordinates \eqn{(x_{1}, x_{2}, x_{3})}{(x1, x2, x3)}}
+used to calculate \eqn{h(x)=\log(g(x))}{h(x) = ln(g(x))}.}
+
+\item{inp_Dvec}{A numeric vector of length 2 indicating the support of
+\code{inp_gfun}.}
 }
 \value{
 A logical vector of length 1:
-   TRUE if the slope of the secant between the first two points is
-   greater than or equal to the slope of the secant between the second
-   two points; FALSE otherwise.
+   \code{TRUE} if \code{inp_gfun} is log-concave,
+   \code{FALSE} if \code{inp_gfun} is not log-concave.
 }
 \description{
 Helper function to check the log concavity

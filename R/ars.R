@@ -33,6 +33,11 @@
 #' @export
 ars <- function(n,g,D,k=100){
   
+  # g must be log-concave
+  if (!faux_CheckLogConcavity(g,D)) {
+    stop("g must be log-concave")
+  }
+  
   # get the initial starting x points where the tangents will be drawn
   xvec <- faux_InitChoose(inp_gfun=g,inp_Dvec=D,inp_Initnumsampvec=k)$init_sample_points
   
