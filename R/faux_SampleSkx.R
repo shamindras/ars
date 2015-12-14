@@ -66,17 +66,18 @@ faux_SampleSkx <- function(inp_uintervallist, inp_sfunlist){
   int <- c()
   if(inp_uintervallist[[1]][1]<0 && inp_uintervallist[[length(inp_uintervallist)]][2]>0){
     int <- c(-100,100)
-    ext <- "yes"
+    r <- uniroot(rootfun,interval=int,extendInt="yes",u=U)$root
   }
   if(inp_uintervallist[[1]][1]==0 && inp_uintervallist[[length(inp_uintervallist)]][2]>0){
     int <- c(0,10)
-    ext <- "upX"
+    lower <- 0
+    r <- uniroot(rootfun,interval=int,extendInt="yes", lower=lower,u=U)$root
   }
   if(inp_uintervallist[[1]][1]<0 && inp_uintervallist[[length(inp_uintervallist)]][2]==0){
     int <- c(-10,0)
-    ext <- "downX"
+    upper <- 0
+    r <- uniroot(rootfun,interval=int,upper=upper,extendInt="yes",u=U)$root
   }
-  r <- uniroot(rootfun,interval=int,extendInt=ext,u=U)$root
   return(faux_SampleSkx_out=r)
   
 }
