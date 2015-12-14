@@ -1,6 +1,6 @@
-context("test_out_faux_hPrimex: Check Output of faux_hPrimex")
+context("test-out_faux_hPrimex: Check Output of faux_hPrimex")
 
-test_that("test_out_faux_hPrimex: Outputs are Validated", {
+test_that("test-out_faux_hPrimex: Outputs are Validated", {
   
   # Test 1 - Check that the output is a numeric vector 
   set.seed(0)

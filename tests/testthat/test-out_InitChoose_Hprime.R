@@ -1,6 +1,6 @@
-context("test_out_InitChoose_HPrime: Check Output of InitChoose and HPrime")
+context("test-out_InitChoose_HPrime: Check Output of InitChoose and HPrime")
 
-test_that("test_out_InitChoose_HPrime: Outputs are Validated", { 
+test_that("test-out_InitChoose_HPrime: Outputs are Validated", { 
   
   # Test 1 - check that when the initial points are generated, hPrime(x) does 
   # not produce NA values 
@@ -93,6 +93,44 @@ test_that("test_out_InitChoose_HPrime: Outputs are Validated", {
   #The value of h'(x) should be -5.5 (calculated by hand)
   expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
                                   rep(-8,length(y_test))),TRUE))
+  
+  # Test 7 - check that when the initial points are generated, hPrime(x) does 
+  # not produce NA values 
+  # beta distribution with shape1=2 and shape2=5
+  inp_gfun <- function(x) dbeta(x, shape1 = 2, shape2 = 5)     #valid function
+  inp_Dvec <- c(0, 1)                                        #valid input 
+  y_test <- faux_InitChoose(inp_gfun,inp_Dvec,20)$init_sample_points
+  mode <- faux_InitChoose(inp_gfun, inp_Dvec,20)$mode
+  #For beta distribution, mode = 4
+  expect_equal(round(mode,4),0.2)
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test<mode]) > 0))
+  #h'(x) < 0 if x > mode 
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test>mode]) < 0))
+  #The value of h'(x) should be the following vector (calculated by hand)
+  hPrime <- function(x) 1/x-4/(1-x)
+  hPrime_vec <- hPrime(y_test)
+  expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
+                                  hPrime_vec),TRUE))
+  
+  # Test 8 - check that when the initial points are generated, hPrime(x) does 
+  # not produce NA values 
+  # beta distribution with shape1=2 and shape2=5 in explicit form 
+  inp_gfun <- function(x) {
+     gamma(2+5)/(gamma(2)*gamma(5))*x^1*(1-x)^4 
+  }                                                          #valid function
+  inp_Dvec <- c(0, 1)                                        #valid input 
+  y_test <- faux_InitChoose(inp_gfun,inp_Dvec,20)$init_sample_points
+  mode <- faux_InitChoose(inp_gfun, inp_Dvec,20)$mode
+  #For beta distribution, mode = 4
+  expect_equal(round(mode,4),0.2)
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test<mode]) > 0))
+  #h'(x) < 0 if x > mode 
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test>mode]) < 0))
+  #The value of h'(x) should be the following vector (calculated by hand)
+  hPrime <- function(x) 1/x-4/(1-x)
+  hPrime_vec <- hPrime(y_test)
+  expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
+                                  hPrime_vec),TRUE))
 })
                                    
   

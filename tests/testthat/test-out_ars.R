@@ -1,6 +1,6 @@
-context("test_out_ars: Check output of ars matches known distributions")
+context("test-out_ars: Check output of ars matches known distributions")
 
-test_that("test_out_ars: Outputs are Validated", {
+test_that("test-out_ars: Outputs are Validated", {
   
   # Test 1 - Check that output of ars is normal when input is normal pdf
   # set.seed(0)

@@ -1,6 +1,6 @@
-context("test_inp_faux_InitChoose: Check Choice of initial 2 Sample Points")
+context("test-inp_faux_InitChoose: Check Choice of initial 2 Sample Points")
 
-test_that("test_inp_faux_InitChoose: Inputs are Validated", {
+test_that("test-inp_faux_InitChoose: Inputs are Validated", {
 
  # Test 1
  set.seed(0)

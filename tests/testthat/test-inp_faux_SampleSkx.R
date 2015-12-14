@@ -1,7 +1,6 @@
-context("test_inp_faux_SampleSkx: Check Inputs")
+context("test-inp_faux_SampleSkx: Check Inputs")
 
-test_that("test_inp_faux_SampleSkx: Valid lists of intervals and 
-          functions", {
+test_that("test-inp_faux_SampleSkx: Inputs are Validated", {
   
   # Test 1 
   set.seed(0)

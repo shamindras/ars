@@ -1,6 +1,6 @@
-context("test_inp_faux_Lkx: Check Input Validity of faux_Lkx")
+context("test-inp_faux_Lkx: Check Input Validity of faux_Lkx")
 
-test_that("test_inp_faux_Lkx: Inputs are Validated", {
+test_that("test-inp_faux_Lkx: Inputs are Validated", {
   
   # Test 1
   set.seed(0)

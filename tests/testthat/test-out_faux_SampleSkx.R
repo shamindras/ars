@@ -1,6 +1,6 @@
-context("test_out_faux_SampleSkx: Check that the output is valid")
+context("test-out_faux_SampleSkx: Check that the output is valid")
 
-test_that("test_out_faux_SampleSkx: Output of faux_SampleSkx is a valid number sampled from Skx", {
+test_that("test-out_faux_SampleSkx: Outputs are Validated", {
   
   # Test 1 - Check that the output is numeric
   set.seed(0)

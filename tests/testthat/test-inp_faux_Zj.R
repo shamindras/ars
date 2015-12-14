@@ -1,6 +1,6 @@
-context("test_inp_faux_Zj: Check Input Validity of faux_Zj")
+context("test-inp_faux_Zj: Check Input Validity of faux_Zj")
 
-test_that("test_inp_faux_Zj: Inputs are Validated", {
+test_that("test-inp_faux_Zj: Inputs are Validated", {
   
   # Test 1
   set.seed(0)

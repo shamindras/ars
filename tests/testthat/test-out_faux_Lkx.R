@@ -1,6 +1,6 @@
-context("test_out_faux_Lkx: Check Output of faux_Lkx")
+context("test-out_faux_Lkx: Check Output of faux_Lkx")
 
-test_that("test_out_faux_Lkx: Outputs are Validated", {
+test_that("test-out_faux_Lkx: Outputs are Validated", {
   
   # Test 1 - Check that the output is a list 
   set.seed(0)

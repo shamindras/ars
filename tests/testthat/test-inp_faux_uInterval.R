@@ -1,6 +1,6 @@
-context("test_inp_faux_uInterval: Check Inputs")
+context("test-inp_faux_uInterval: Check Inputs")
 
-test_that("test_inp_faux_uInterval: Inputs are Valid", {
+test_that("test-inp_faux_uInterval: Inputs are Validated", {
   
   # Test 1
   set.seed(0)

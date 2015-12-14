@@ -1,6 +1,6 @@
-context("test_inp_faux_CheckLogConcavity: Check input validity of faux_CheckLogConcavity")
+context("test-inp_faux_CheckLogConcavity: Check input validity of faux_CheckLogConcavity")
 
-test_that("test_inp_faux_CheckLogConcavity: Inputs are validated", {
+test_that("test-inp_faux_CheckLogConcavity: Inputs are validated", {
   
   # Test 1
   set.seed(0)

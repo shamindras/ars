@@ -1,6 +1,6 @@
-context("test_out_faux_Zj: Check Output of faux_Zj")
+context("test-out_faux_Zj: Check Output of faux_Zj")
 
-test_that("test_out_faux_Zj: Outputs are Validated", {
+test_that("test-out_faux_Zj: Outputs are Validated", {
   
   # Test 1 - Check that the output is a numeric vector 
   set.seed(0)

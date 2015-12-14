@@ -1,6 +1,6 @@
-context("test_out_faux_Skx: Check output of Skx is a list of functions")
+context("test-out_faux_Skx: Check output of Skx is a list of functions")
 
-test_that("test_out_faux_Skx: Output of faux_Skx is a valid list of functions making up Skx", {
+test_that("test-out_faux_Skx: Outputs are Validated", {
   
   # Test 1 - Check that the output is a list
   set.seed(0)

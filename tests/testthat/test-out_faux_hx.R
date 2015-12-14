@@ -1,6 +1,6 @@
-context("test_out_faux_hx: Check Output of faux_hx")
+context("test-out_faux_hx: Check Output of faux_hx")
 
-test_that("test_out_faux_hx: Outputs are Validated", {
+test_that("test-out_faux_hx: Outputs are Validated", {
   
   # Test 1 - Check that the output is a function
   set.seed(0)

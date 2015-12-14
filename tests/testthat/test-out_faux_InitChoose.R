@@ -1,7 +1,7 @@
-context("test_out_faux_InitChoose: Check Initially
+context("test-out_faux_InitChoose: Check Initially
         chosen 2 sample points are reasonable")
 
-test_that("test_out_faux_InitChoose: test_out_faux_InitChoose: Outputs are Validated", {
+test_that("test-out_faux_InitChoose: Outputs are Validated", {
 
  # Test 1 - Check that we correctly sample 2 points as a default
   set.seed(0)
