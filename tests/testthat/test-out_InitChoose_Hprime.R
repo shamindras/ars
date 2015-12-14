@@ -131,6 +131,42 @@ test_that("test-out_InitChoose_HPrime: Outputs are Validated", {
   hPrime_vec <- hPrime(y_test)
   expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
                                   hPrime_vec),TRUE))
+  
+  # Test 9 - check that when the initial points are generated, hPrime(x) does 
+  # not produce NA values 
+  # gamma distribution with shape=3 and scale=8
+  inp_gfun <- function(x) dgamma(x, shape = 3, rate = 1/8)     #valid function
+  inp_Dvec <- c(0, Inf)                                        #valid input 
+  y_test <- faux_InitChoose(inp_gfun,inp_Dvec,20)$init_sample_points
+  mode <- faux_InitChoose(inp_gfun, inp_Dvec,20)$mode
+  #For gamma distribution, mode = (shape-1)*scale=2*8=16
+  expect_equal(mode,16)
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test<mode]) > 0))
+  #h'(x) < 0 if x > mode 
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test>mode]) < 0))
+  #The value of h'(x) should be the following vector (calculated by hand)
+  hPrime <- function(x) 2/x-1/8
+  hPrime_vec <- hPrime(y_test)
+  expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
+                                  hPrime_vec),TRUE))
+  
+  # Test 10 - check that when the initial points are generated, hPrime(x) does 
+  # not produce NA values 
+  # gamma distribution with shape=3 and scale=8 with explicit form 
+  inp_gfun <- function(x) (1/gamma(3)*(8^3))*x^2*exp(-x/8)   #valid function
+  inp_Dvec <- c(0, Inf)                                        #valid input 
+  y_test <- faux_InitChoose(inp_gfun,inp_Dvec,20)$init_sample_points
+  mode <- faux_InitChoose(inp_gfun, inp_Dvec,20)$mode
+  #For gamma distribution, mode = (shape-1)*scale=2*8=16
+  expect_equal(mode,16)
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test<mode]) > 0))
+  #h'(x) < 0 if x > mode 
+  expect_true(all(faux_hPrimex(inp_gfun,y_test[y_test>mode]) < 0))
+  #The value of h'(x) should be the following vector (calculated by hand)
+  hPrime <- function(x) 2/x-1/8
+  hPrime_vec <- hPrime(y_test)
+  expect_true(identical(all.equal(faux_hPrimex(inp_gfun,y_test),
+                                  hPrime_vec),TRUE))
 })
                                    
   
