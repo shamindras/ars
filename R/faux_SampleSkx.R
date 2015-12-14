@@ -64,15 +64,15 @@ faux_SampleSkx <- function(inp_uintervallist, inp_sfunlist){
   rootfun <- function(z,u) cdf(z)-u
   int <- c()
   if(inp_uintervallist[[1]][1]<0 && inp_uintervallist[[length(inp_uintervallist)]][2]>0){
-    int <- c(-10,10)
+    int <- c(-100,100)
     ext <- "yes"
   }
   if(inp_uintervallist[[1]][1]==0 && inp_uintervallist[[length(inp_uintervallist)]][2]>0){
-    int <- c(0,100)
+    int <- c(0,10)
     ext <- "upX"
   }
   if(inp_uintervallist[[1]][1]<0 && inp_uintervallist[[length(inp_uintervallist)]][2]==0){
-    int <- c(-100,0)
+    int <- c(-10,0)
     ext <- "downX"
   }
   r <- uniroot(rootfun,interval=int,extendInt=ext,u=U)$root

@@ -4,7 +4,7 @@
 \alias{ars}
 \title{Main function to carry out simulation}
 \usage{
-ars(n, g, D)
+ars(n, g, D, k = 100)
 }
 \arguments{
 \item{n}{A number indicates how many accepted points user wants to generate.}
@@ -13,6 +13,8 @@ ars(n, g, D)
 
 \item{D}{A vector with two elements indicates the domain of the sample 
 generation.}
+
+\item{k}{The number of inital x points to start the algorithm. Default is 100.}
 }
 \value{
 n accepted sampling points.
@@ -20,4 +22,32 @@ n accepted sampling points.
 \description{
 Main function to carry out simulation
 }
+\examples{
+sample 1000 points from the standard normal distribution using adaptive
+# rejection sample
+
+set.seed(0)
+dnorm1000 <- ars(1000,g=dnorm,D=c(-Inf,Inf))
+hist(dnorm1000, breaks=30, main="1000 points sampled from N(0,1)")
+
+# sample 500 point from the chisquare distribution with df=5
+
+set.seed(123)
+dchisq500 <- ars(500,g=function(x) dchisq(x,df=5), D=c(0,Inf))
+hist(dchisq500, breaks=30)
+
+# sample 1000 points from the exponential distribution
+
+set.seed(0)
+dexp1000 <- ars(1000,function(x) exp(-x), c(0,Inf))
+hist(dexp1000,breaks=30)
+
+}
+\references{
+\url{https://stat.duke.edu/~cnk/Links/tangent.method.pdf}
+}
+\seealso{
+\link[="https://stat.duke.edu/~cnk/Links/tangent.method.pdf"]{Gilks}
+}
+\keyword{sample}
 
