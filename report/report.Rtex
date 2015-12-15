@@ -149,7 +149,9 @@ with major contributions breaking down as follows:
 	\texttt{faux\_hx}, \texttt{faux\_Lkx}, \texttt{faux\_Ukx}, and
 	\texttt{faux\_SampleSkx}.
 	\item Chenzhi 
-	\item Courtney 
+	\item Courtney wrote \texttt{faux\_SampleSkx}, \texttt{faux\_Skx}, and
+	\texttt{faux\_uInterval}, as well as their tests, and helped to create the
+	final \texttt{ars} function.
 	\item Shamindra 
 \end{enumerate}
 
