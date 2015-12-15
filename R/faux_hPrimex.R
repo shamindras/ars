@@ -20,14 +20,14 @@ faux_hPrimex <- function(inp_gfun, inp_xvec)
     stop("inp_xvec must be at least 1 numeric elements")
   }
   h_x <- faux_hx(inp_gfun)
-  hPrimex_out <- grad(h_x, inp_xvec)
+  hPrimex_out <- numDeriv::grad(h_x, inp_xvec)
   #If there is NaN values, add tolerence to regenerate the hPrimex_out
   if(any(is.nan(hPrimex_out))){
     #NaN position 
     pos <- which(is.nan(hPrimex_out))
     #change the h' to be the h' of the x+tolerence so that it gives the 
     #correct result 
-    hPrimex_out[pos] <- grad(h_x,inp_xvec[pos]+def_faux_hPrime_Perturb)
+    hPrimex_out[pos] <- numDeriv::grad(h_x,inp_xvec[pos]+def_faux_hPrime_Perturb)
   }
   return(hPrimex_out)
 }
