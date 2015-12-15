@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[pdftex]{graphicx}
+\allowdisplaybreaks
+
+%% begin.rcode setup, include=FALSE
+% library(knitr)
+% opts_chunk$set(fig.width = 5,
+%                fig.height = 4,
+%                warning = FALSE)
+%% end.rcode
+
+\begin{document} 
+\title{STAT 243: Final Project}
+\author{Jonathan Larson, Chenzhi Li, Courtney Schiffman, \& Shamindra Shrotriya}
+\date{December 17th, 2015}
+
+\maketitle
+
+\section{Function Design}
+
+We chose to use a functional style as opposed to an object-oriented style,
+and composed our main function \texttt{ars} from the auxiliary functions
+that are summarized in Table 1.
+Note that we employed a naming convention wherein all auxiliary functions
+begin with the prefix \texttt{faux}.
+In order to maximize efficiency, we distributed these auxiliary functions
+among our group. This necessitated an explicit mapping of the output of early
+functions to the input of later functions.
+Note also that objects that translate to the same ideas in the paper are named
+in a similar way to each other, and also to how those objects are named
+in the paper. For example, \texttt{inp\_Dvec} is used consistently
+to represent $D$, and \texttt{inp\_xvec} is used consistently to represent
+$T_k$.
+
+A pseudocode summary of the overall function \texttt{ars} is included here:
+\begin{verbatim}
+ars <- function(n, g, D, k = 100) {
+  Check for log-concavity
+  Get initial points in Tk
+  Get h, uk, lk, and sk
+  while (length of sample < n) {
+    Sample x* from s
+    Generate w ~ uniform(0,1)
+    Determine which interval x* falls into
+    if (w passes squeezing test) {
+      Include x* in sample
+    } else if (w passes rejection test) {
+      Include x* in sample
+      if (there are no numerical issues with the derivative) {
+        Include x* in Tk
+        Recalculate z, u, l, and s
+      }
+    }
+  }
+  return(sample)
+}
+\end{verbatim}
+
+\begin{table}[]
+\centering
+\caption{Summary of the auxiliary functions.}
+\label{}
+\begin{tabular}{ll}
+\hline \\
+\textbf{Function Name} & \textbf{Summary}                                                                 \\
+\hline \\
+\texttt{faux\_CheckLogConcavity} & Takes $g$ and $D$ and returns \texttt{TRUE} if $g$ is log-concave.              \\
+                                 & We chose to do one global check at the beginning as opposed to multiple         \\
+																 & checks throughout                                                                \\
+\texttt{faux\_hx}                & Takes $g$ and returns $h$.                                                       \\
+\texttt{faux\_findmode}          & Takes $g$ and $D$ and returns the mode of $g$.                                   \\
+                                 & Obtaining initial points in $T_k$ on either side of the mode was how we          \\
+																 & ensured $h'(x) > 0$ and $h'(x_k) < 0$.                                           \\
+\texttt{faux\_InitChoose}        & Takes $g$, $D$, and an initial $k$ and returns $T_k$.                            \\
+\texttt{faux\_hPrimex}           & Takes $g$ and $T_k$ and returns $h'(T_k)$.                                       \\
+\texttt{faux\_Lkx}               & Takes $g$ and $T_k$ and returns $l_k$.                                           \\
+\texttt{faux\_Zj}                & Takes $g$, $T_k$, and $D$ and returns the $z_j$.                                 \\
+\texttt{faux\_uInterval}         & Takes the $z_j$ and returns the intervals between the $z_j$.                     \\
+\texttt{faux\_Ukx}               & Takes $g$ and $T_k$ and returns $u_k$.                                           \\
+\texttt{faux\_Skx}               & Takes $u_k$ and the intervals between the $z_j$ and returns $s_k$.               \\
+\texttt{faux\_SampleSkx}         & Takes $u_k$ and the intervals between the $z_j$ and returns a sample from $s_k$. \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Testing}
+
+We used \texttt{testthat} throughout our work on this project.
+We tested our functions as we created them, and in some cases we modeled
+test-driven development by writing the tests before the function.
+Writing tests for each others' functions was our main method of code review,
+although we did engage in further code review as well as pair programming.
+
+The tests for our auxiliary functions mainly took these three forms:
+\begin{enumerate}
+	\item Valid input. For example, testing that
+	\begin{enumerate}
+		\item $g$ is a function;
+		\item $D$ is a numeric vector of length $2$; and
+		\item $T_k$ is a numeric vector.
+	\end{enumerate}
+	\item Valid output. For example, testing that
+	\begin{enumerate}
+		\item \texttt{faux\_CheckLogConcavity} produces a logical vector of length $1$;
+		\item \texttt{faux\_hx} produces a function; and
+		\item \texttt{faux\_Ukx} produces a list of functions.
+	\end{enumerate}
+	\item Correct output. For example, testing that
+	\begin{enumerate}
+		\item \texttt{faux\_CheckLogConcavity} detects that $g(x) = \phi(x)$
+		is log-concave;
+		\item \texttt{faux\_hPrimex} returns $h'(x) = - 2$ for $g(x) = 2e^{-2x}$; and
+		\item \texttt{faux\_findmode} returns $0$ for $g(x) = \phi(x)$.
+	\end{enumerate}
+\end{enumerate}
+In addition to the tests for each auxiliary function, we also wrote tests
+for the overall \texttt{ars} function, checking its output against theory.
+This modular testing structure allowed us to easily create an overall testing
+function \texttt{test-main.R} which combined all tests into one.
+After all was said and done, we tested the package in the BCE.
+
+\section{Documentation}
+
+We used \texttt{roxygen2} to facilitate the creation of documentation;
+essentially it allows us to create all the documentation with a single command.
+We maintained the documentation throughout the coding process, ensuring
+that function descriptions, inputs, outputs, and examples were up-to-date.
+We followed the R Style Guide for coding and linting practices,
+and heavily commented our code to ensure clarity and to facilitate code
+review.
+
+\section{Collaboration}
+
+We used Git in order to collaborate on the code itself. We also created a
+private Slack group for collaboration and real-time communication.
+Slack employs a markdown-based text formatting interface which allows
+easy formatting of code and text.
+Lastly, we used a Google doc for group documentation, including
+meeting minutes, technical notes on the \texttt{ars} function,
+and to-do lists.
+
+We all contributed to the writing of functions, tests, and documentation,
+with major contributions breaking down as follows:
+\begin{enumerate}
+	\item Jonathan wrote \texttt{faux\_CheckLogConcavity} and assisted with
+	\texttt{faux\_hx}, \texttt{faux\_Lkx}, \texttt{faux\_Ukx}, and
+	\texttt{faux\_SampleSkx}.
+	\item Chenzhi 
+	\item Courtney 
+	\item Shamindra 
+\end{enumerate}
+
+\end{document}
