@@ -16,9 +16,12 @@ Authors@R: c(
 Maintainer: Shamindra Shrotriya <shamindra@berkeley.edu>
 LazyData: true
 URL: https://github.com/shamindras/ars.git
-Imports: numDeriv
+Imports: numDeriv,
+    knitr,
+    rmarkdown
 Description: An R implementation of the adaptive rejection sampling (ARS)
     algorithm. This is based on the P. Wild and W. R. Gilks (1992) paper
     "Adaptive rejection sampling for Gibbs sampling".
 License: GPL-2
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr
