@@ -25,3 +25,5 @@ Description: An R implementation of the adaptive rejection sampling (ARS)
 License: GPL-2
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
+Suggests: knitr,
+    rmarkdown
