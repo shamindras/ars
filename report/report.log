@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 DEC 2015 14:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.20)  16 DEC 2015 14:39
 entering extended mode
 **report.Rtex
 ("E:\Gus Files\My Documents\Berkeley\STAT 243\ars\report\report.Rtex"
@@ -236,8 +236,8 @@ LaTeX Warning: No positions in optional float specifier.
 
 [1
 
-{C:/Users/Jonno/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-("E:\Gus Files\My Documents\Berkeley\STAT 243\ars\report\report.bbl") [3]
+{C:/Users/Jonno/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+("E:\Gus Files\My Documents\Berkeley\STAT 243\ars\report\report.bbl" [2]) [3]
 ("E:\Gus Files\My Documents\Berkeley\STAT 243\ars\report\report.aux") ) 
 Here is how much of TeX's memory you used:
  2657 strings out of 493921
@@ -256,7 +256,7 @@ KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX
 s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (3 pages, 154034 bytes).
+Output written on report.pdf (3 pages, 153942 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

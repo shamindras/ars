@@ -151,7 +151,7 @@ with major contributions breaking down as follows:
 \begin{enumerate}
 	\item Jonathan wrote \texttt{faux\_CheckLogConcavity} and assisted with
 	\texttt{faux\_hx}, \texttt{faux\_Lkx}, \texttt{faux\_Ukx}, and
-	\texttt{faux\_SampleSkx} (including associated tests and documentation).
+	\texttt{faux\_SampleSkx}.
 	\item Chenzhi wrote \texttt{faux\_hx}, \texttt{faux\_hPrimex}, \texttt{faux\_Lkx}    and \texttt{faux\_Zj}, as well as their tests.
 	\item Courtney wrote \texttt{faux\_SampleSkx}, \texttt{faux\_Skx}, and
 	\texttt{faux\_uInterval}, and helped to create the final \texttt{ars} function.
