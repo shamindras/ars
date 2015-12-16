@@ -48,7 +48,7 @@ hist(dexp1000,breaks=30)
 \url{https://stat.duke.edu/~cnk/Links/tangent.method.pdf}
 }
 \seealso{
-\link[="https://stat.duke.edu/~cnk/Links/tangent.method.pdf"]{Gilks}
+\href{http://hedibert.org/wp-content/uploads/2013/12/1992GilksWild.pdf}{Gilks et al}
 }
 \keyword{sample}
 

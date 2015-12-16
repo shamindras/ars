@@ -8,7 +8,7 @@
 #' a value sampled from \eqn{g}.
 #' @param k The number of inital x points to start the algorithm. Default is 100.
 #' @references \url{https://stat.duke.edu/~cnk/Links/tangent.method.pdf}
-#' @seealso \link[="https://stat.duke.edu/~cnk/Links/tangent.method.pdf"]{Gilks}
+#' @seealso \href{http://hedibert.org/wp-content/uploads/2013/12/1992GilksWild.pdf}{Gilks et al}
 #' @keywords sample
 #' @examples 
 #' sample 1000 points from the standard normal distribution using adaptive
