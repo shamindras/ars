@@ -154,8 +154,7 @@ with major contributions breaking down as follows:
 	\texttt{faux\_SampleSkx} (including associated tests and documentation).
 	\item Chenzhi wrote \texttt{faux\_hx}, \texttt{faux\_hPrimex}, \texttt{faux\_Lkx}    and \texttt{faux\_Zj}, as well as their tests.
 	\item Courtney wrote \texttt{faux\_SampleSkx}, \texttt{faux\_Skx}, and
-	\texttt{faux\_uInterval}, as well as their tests, and helped to create the
-	final \texttt{ars} function.
+	\texttt{faux\_uInterval}, and helped to create the final \texttt{ars} function.
 	\item Shamindra helped design the testing-documentation-coding-git workflow
     which enabled the team to develop with greater efficiency and also assisted 
     in the coding of \texttt{faux\_findmode}, \texttt{faux\_InitChoose}, \texttt{faux\_hPrimex}, 
