@@ -1,0 +1,16 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Gilks and Wild(1992)]{Gilks:Wild:1992}
+W.~R. Gilks and P.~Wild.
+\newblock Adaptive rejection sampling for gibbs sampling.
+\newblock \emph{Journal of the Royal Statistical Society. Series C (Applied
+  Statistics)}, 41\penalty0 (2):\penalty0 337--348, 1992.
+\newblock ISSN 00359254, 14679876.
+\newblock URL \url{http://www.jstor.org/stable/2347565}.
+
+\end{thebibliography}

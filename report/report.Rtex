@@ -3,6 +3,7 @@
 \usepackage{amsfonts}
 \usepackage[margin=0.5in]{geometry}
 \usepackage[pdftex]{graphicx}
+\usepackage{natbib}
 \allowdisplaybreaks
 
 %% begin.rcode setup, include=FALSE
@@ -29,7 +30,7 @@ begin with the prefix \texttt{faux}.
 In order to encourage modularity, we distributed these auxiliary functions
 among our group. This necessitated an explicit mapping of the output of early
 functions to the input of later functions.
-Note also that objects that translate to the same ideas in the Gilks et al paper are named
+Note also that objects that translate to the same ideas in \cite{Gilks:Wild:1992} are named
 in a similar way to each other, and also to how those objects are named
 in the paper. For example, \texttt{inp\_Dvec} is used consistently
 to represent $D$, and \texttt{inp\_xvec} is used consistently to represent
@@ -150,7 +151,7 @@ with major contributions breaking down as follows:
 \begin{enumerate}
 	\item Jonathan wrote \texttt{faux\_CheckLogConcavity} and assisted with
 	\texttt{faux\_hx}, \texttt{faux\_Lkx}, \texttt{faux\_Ukx}, and
-	\texttt{faux\_SampleSkx}.
+	\texttt{faux\_SampleSkx} (including associated tests and documentation).
 	\item Chenzhi 
 	\item Courtney wrote \texttt{faux\_SampleSkx}, \texttt{faux\_Skx}, and
 	\texttt{faux\_uInterval}, as well as their tests, and helped to create the
@@ -160,5 +161,8 @@ with major contributions breaking down as follows:
     in the coding of \texttt{faux\_findmode}, \texttt{faux\_InitChoose}, \texttt{faux\_hPrimex}, 
     \texttt{faux\_Lkx}, \texttt{faux\_Ukx}, and pair programmed with Courtney on some aspects of \texttt{ars.R}.
 \end{enumerate}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
 
 \end{document}
