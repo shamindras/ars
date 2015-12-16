@@ -11,6 +11,7 @@
 # produced vignettes
 # vignettes/*.html
 # vignettes/*.pdf
+vignettes/ars_cache/
 
 # Reference Folders
 reference/*.pdf
@@ -19,3 +20,4 @@ reference/*.pdf
 # DS_Store mac files
 .DS_Store
 R/.DS_Store
+inst/doc
