@@ -24,14 +24,14 @@ The team members are listed below (alphabetically) by surname:
 
 ### Run the following commands once in `Rstudio`
 1. `getwd() # Check that the working directory is the same as $install_path/ars`
-2. `install.packages("./ars_1.0.tar.gz", repos=NULL, type="source") # Install ars package`
+2. `install.packages("./ars.tar.gz", repos=NULL, type="source") # Install ars package`
 - Warning: If this results in the following error:
   `ERROR: dependency ‘numDeriv’ is not available for package ‘ars’`
 - Then run the following commands in Rstudio
   - `install.packages(c("numDeriv", "testthat"))`
   - `library(numDeriv); library(testthat)`
 - Rerun
-  - `install.packages("./ars_1.0.tar.gz", repos=NULL, type="source")`
+  - `install.packages("./ars.tar.gz", repos=NULL, type="source")`
   - The ars package should now be installed with required dependencies
   - NOTE: This installation of dependencies from source is a [known issue](https://github.com/ropensci/plotly/issues/247) with no clearly defined solution for all operating systems
 3. `library(numDeriv); library(testthat) # Load the dependencies`
@@ -39,7 +39,7 @@ The team members are listed below (alphabetically) by surname:
 4. `library(testthat) # Load testthat`
 5. `test_package('ars', 'main') # Run the tests`
 
-If the above steps have executed without error, then the `ars` function is ready to test! 
+If the above steps have executed without error, then the `ars` function is ready to use! 
 
 *Happy Adaptive Rejection Sampling!*
 

@@ -215,7 +215,7 @@ our end-to-end testing methodology.
 % # Exponential(10)
 % set.seed(0)
 % dexp_10_1000_exf <- ars(1000
-%                         , g = function(x) 10*exp(-10*x)help()
+%                         , g = function(x) 10*exp(-10*x)
 %                         , D=c(0, Inf))
 %% end.rcode
 

@@ -1,7 +1,7 @@
 Package: ars
+Version: 1.0
 Type: Package
 Title: An R Implementation Of The Adaptive Rejection Sampling (ARS) Algorithm
-Version: 1.0
 Authors@R: c(
     person("Shamindra", "Shrotriya", email = "shamindra@berkeley.edu",
         role = c("aut", "cre")),
