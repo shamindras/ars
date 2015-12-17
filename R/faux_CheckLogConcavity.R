@@ -28,8 +28,7 @@ faux_CheckLogConcavity <- function(inp_gfun, inp_Dvec){
   # inp_Dvec must be in ascending order
   inp_Dvec <- sort(inp_Dvec)
   
-  # Create an interval in the domain that is small enough for testing
-  # log-concavity
+  # Create an interval in the domain that is small enough for finding the mode
   smallD <- numeric(2)
   if (is.infinite(inp_Dvec[1])) {
     smallD[1] <- def_faux_CheckLogConcavity_Dmin
@@ -42,8 +41,16 @@ faux_CheckLogConcavity <- function(inp_gfun, inp_Dvec){
     smallD[2] <- min(inp_Dvec[2],def_faux_CheckLogConcavity_Dmax)
   }
   
-  # smallD must be in ascending order
-  smallD <- sort(smallD)
+  # Find the mode
+  g_mode <- faux_findmode(optim_intervalvec = smallD,
+                          inp_gfun = inp_gfun)$faux_findmode_par
+  
+  # Create an interval in the domain that is small enough for testing
+  # log-concavity
+  smallD <- c(max(g_mode - def_faux_CheckLogConcavity_Range,
+                  inp_Dvec[1]),
+              min(g_mode + def_faux_CheckLogConcavity_Range,
+                  inp_Dvec[2]))
   
   # Create a vector of points to test for log-concavity
   test <- seq(from = smallD[1],
