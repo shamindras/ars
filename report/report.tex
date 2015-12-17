@@ -65,6 +65,14 @@
 
 \maketitle
 
+\section{Package source}
+
+The package source file and installation instruction detailscan be found in the following location:
+\begin{itemize}
+  \item The source file (\texttt{ars.tar.gz}) is located here: \url{https://github.com/shamindras/ars/blob/master/ars.tar.gz}
+  \item The installation instructions are located here: here: \url{https://github.com/shamindras/ars/blob/master/README.md}
+\end{itemize}
+
 \section{Function Design}
 
 We chose to use a functional coding style as opposed to an object-oriented coding style,
@@ -222,10 +230,6 @@ our end-to-end testing methodology.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
  \hlkwd{install.packages}\hlstd{(}\hlstr{"../ars.tar.gz"}\hlstd{,} \hlkwc{repos}\hlstd{=}\hlkwa{NULL}\hlstd{,} \hlkwc{type}\hlstd{=}\hlstr{"source"}\hlstd{)}
-\end{alltt}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Installing package into 'E:/Gus Files/My Documents/R/win-library/3.2'\\\#\# (as 'lib' is unspecified)}}\begin{alltt}
  \hlkwd{library}\hlstd{(ars)}
 
  \hlcom{# We can reference a standard normal density using R's built in 'dnorm' function}

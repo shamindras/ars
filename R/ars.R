@@ -10,6 +10,7 @@
 #' @references \url{https://stat.duke.edu/~cnk/Links/tangent.method.pdf}
 #' @seealso \href{http://hedibert.org/wp-content/uploads/2013/12/1992GilksWild.pdf}{Gilks et al}
 #' @keywords sample
+#' @import numDeriv
 #' @examples 
 #' sample 1000 points from the standard normal distribution using adaptive
 #' # rejection sample

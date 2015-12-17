@@ -20,6 +20,14 @@
 
 \maketitle
 
+\section{Package source}
+
+The package source file and installation instruction detailscan be found in the following location:
+\begin{itemize}
+  \item The source file (\texttt{ars.tar.gz}) is located here: \url{https://github.com/shamindras/ars/blob/master/ars.tar.gz}
+  \item The installation instructions are located here: here: \url{https://github.com/shamindras/ars/blob/master/README.md}
+\end{itemize}
+
 \section{Function Design}
 
 We chose to use a functional coding style as opposed to an object-oriented coding style,
