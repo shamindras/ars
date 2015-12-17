@@ -217,15 +217,119 @@ points returned from the \texttt{ars} function. This is effectively a demonstrat
 our end-to-end testing methodology.
 
 %% begin.rcode r-chunk2, cache=TRUE, warning=FALSE, eval=TRUE
-% # jonno/ courtney - could you please add in our standard testing function here
-% # It should accept an input vector of samples and output KS-test, histogram, 
-% # QQplot etc
-% # We can directly reference the sampled vectors from the previous page as 
-% # follows e.g. ars_testing_function()
-% # Test 1 - The validity of the standard normal density output as per above
-% # testing_function(dnorm_N0_1_1000_Rinbult)
-% # Test 2 - The validity of the exp(10) density
-% # testing_function(dexp_10_1000_exf)
+%  ## Define various sample sizes
+%  n <- c(1e1,1e2,1e3)
+%  
+%  ## Standard normal
+%  # Draw samples
+%  x <- sapply(X = n,
+%              FUN = ars,
+%              g = dnorm,
+%              D = c(-Inf,Inf))
+%  # Plot of sample mean as a function of sample size
+%  xBar <- unlist(lapply(X = x,
+%                        FUN = mean))
+%  plot(x = log(n),
+%       y = xBar,
+%       main = 'Sample Mean of Standard Normal as a Function of log(n)')
+%  abline(h = 0,
+%         col = 'red')
+%  # Plot of sample variance as a function of sample size
+%  s2Bar <- unlist(lapply(X = x,
+%                         FUN = var))
+%  plot(x = log(n),
+%       y = s2Bar,
+%       main = 'Sample Variance of Standard Normal as a Function of log(n)')
+%  abline(h = 1,
+%         col = 'red')
+%  # Relative frequency histogram of largest sample with superimposed density
+%  hist(x[[which.max(n)]],
+%       freq = FALSE,
+%       main = 'Relative Frequency Histogram of Largest Sample, Standard Normal')
+%  curve(dnorm,
+%        add = TRUE,
+%        col = 'red')
+%  # Q-Q plot of largest sample
+%  qqplot(x = qnorm(ppoints(500)),
+%         y = x[[which.max(n)]],
+%         main = 'Q-Q Plot of Largest Sample, Standard Normal')
+%  qqline(y = x[[which.max(n)]],
+%         distribution = qnorm,
+%         col = 'red')
+%  
+%  ## Exponential, rate 1
+%  # Draw samples
+%  x <- sapply(X = n,
+%              FUN = ars,
+%              g = dexp,
+%              D = c(0,Inf))
+%  # Plot of sample mean as a function of sample size
+%  xBar <- unlist(lapply(X = x,
+%                        FUN = mean))
+%  plot(x = log(n),
+%       y = xBar,
+%       main = 'Sample Mean of Exponential (1) as a Function of log(n)')
+%  abline(h = 1,
+%         col = 'red')
+%  # Plot of sample variance as a function of sample size
+%  s2Bar <- unlist(lapply(X = x,
+%                         FUN = var))
+%  plot(x = log(n),
+%       y = s2Bar,
+%       main = 'Sample Variance of Exponential (1) as a Function of log(n)')
+%  abline(h = 1,
+%         col = 'red')
+%  # Relative frequency histogram of largest sample with superimposed density
+%  hist(x[[which.max(n)]],
+%       freq = FALSE,
+%       main = 'Relative Frequency Histogram of Largest Sample, Exponential (1)')
+%  curve(dexp,
+%        add = TRUE,
+%        col = 'red')
+%  # Q-Q plot of largest sample
+%  qqplot(x = qexp(ppoints(500)),
+%         y = x[[which.max(n)]],
+%         main = 'Q-Q Plot of Largest Sample Exponential (1)')
+%  qqline(y = x[[which.max(n)]],
+%         distribution = qexp,
+%         col = 'red')
+%  
+%  ## Uniform (0,1)
+%  # Draw samples
+%  x <- sapply(X = n,
+%              FUN = ars,
+%              g = dunif,
+%              D = c(0,1))
+%  # Plot of sample mean as a function of sample size
+%  xBar <- unlist(lapply(X = x,
+%                        FUN = mean))
+%  plot(x = log(n),
+%       y = xBar,
+%       main = 'Sample Mean of Uniform (0,1) as a Function of log(n)')
+%  abline(h = 0.5,
+%         col = 'red')
+%  # Plot of sample variance as a function of sample size
+%  s2Bar <- unlist(lapply(X = x,
+%                         FUN = var))
+%  plot(x = log(n),
+%       y = s2Bar,
+%       main = 'Sample Variance of Uniform (0,1) as a Function of log(n)')
+%  abline(h = 1/12,
+%         col = 'red')
+%  # Relative frequency histogram of largest sample with superimposed density
+%  hist(x[[which.max(n)]],
+%       freq = FALSE,
+%       main = 'Relative Frequency Histogram of Largest Sample, Uniform (0,1)')
+%  curve(dunif,
+%        add = TRUE,
+%        col = 'red')
+%  # Q-Q plot of largest sample
+%  qqplot(x = qunif(ppoints(500)),
+%         y = x[[which.max(n)]],
+%         main = 'Q-Q Plot of Largest Sample, Uniform (0,1)')
+%  qqline(y = x[[which.max(n)]],
+%         distribution = qunif,
+%         col = 'red')
 %% end.rcode
 
 \bibliographystyle{plainnat}

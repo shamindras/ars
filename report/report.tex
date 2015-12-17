@@ -222,6 +222,10 @@ our end-to-end testing methodology.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
  \hlkwd{install.packages}\hlstd{(}\hlstr{"../ars.tar.gz"}\hlstd{,} \hlkwc{repos}\hlstd{=}\hlkwa{NULL}\hlstd{,} \hlkwc{type}\hlstd{=}\hlstr{"source"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Installing package into 'E:/Gus Files/My Documents/R/win-library/3.2'\\\#\# (as 'lib' is unspecified)}}\begin{alltt}
  \hlkwd{library}\hlstd{(ars)}
 
  \hlcom{# We can reference a standard normal density using R's built in 'dnorm' function}
@@ -268,17 +272,165 @@ our end-to-end testing methodology.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
- \hlcom{# jonno/ courtney - could you please add in our standard testing function here}
- \hlcom{# It should accept an input vector of samples and output KS-test, histogram, }
- \hlcom{# QQplot etc}
- \hlcom{# We can directly reference the sampled vectors from the previous page as }
- \hlcom{# follows e.g. ars_testing_function()}
- \hlcom{# Test 1 - The validity of the standard normal density output as per above}
- \hlcom{# testing_function(dnorm_N0_1_1000_Rinbult)}
- \hlcom{# Test 2 - The validity of the exp(10) density}
- \hlcom{# testing_function(dexp_10_1000_exf)}
+  \hlcom{## Define various sample sizes}
+  \hlstd{n} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{1e1}\hlstd{,}\hlnum{1e2}\hlstd{,}\hlnum{1e3}\hlstd{)}
+
+  \hlcom{## Standard normal}
+  \hlcom{# Draw samples}
+  \hlstd{x} \hlkwb{<-} \hlkwd{sapply}\hlstd{(}\hlkwc{X} \hlstd{= n,}
+              \hlkwc{FUN} \hlstd{= ars,}
+              \hlkwc{g} \hlstd{= dnorm,}
+              \hlkwc{D} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{Inf}\hlstd{,}\hlnum{Inf}\hlstd{))}
+  \hlcom{# Plot of sample mean as a function of sample size}
+  \hlstd{xBar} \hlkwb{<-} \hlkwd{unlist}\hlstd{(}\hlkwd{lapply}\hlstd{(}\hlkwc{X} \hlstd{= x,}
+                        \hlkwc{FUN} \hlstd{= mean))}
+  \hlkwd{plot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{log}\hlstd{(n),}
+       \hlkwc{y} \hlstd{= xBar,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Sample Mean of Standard Normal as a Function of log(n)'}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h} \hlstd{=} \hlnum{0}\hlstd{,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
 \end{alltt}
 \end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-1} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Plot of sample variance as a function of sample size}
+  \hlstd{s2Bar} \hlkwb{<-} \hlkwd{unlist}\hlstd{(}\hlkwd{lapply}\hlstd{(}\hlkwc{X} \hlstd{= x,}
+                         \hlkwc{FUN} \hlstd{= var))}
+  \hlkwd{plot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{log}\hlstd{(n),}
+       \hlkwc{y} \hlstd{= s2Bar,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Sample Variance of Standard Normal as a Function of log(n)'}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h} \hlstd{=} \hlnum{1}\hlstd{,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-2} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Relative frequency histogram of largest sample with superimposed density}
+  \hlkwd{hist}\hlstd{(x[[}\hlkwd{which.max}\hlstd{(n)]],}
+       \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Relative Frequency Histogram of Largest Sample, Standard Normal'}\hlstd{)}
+  \hlkwd{curve}\hlstd{(dnorm,}
+        \hlkwc{add} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+        \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-3} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Q-Q plot of largest sample}
+  \hlkwd{qqplot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{qnorm}\hlstd{(}\hlkwd{ppoints}\hlstd{(}\hlnum{500}\hlstd{)),}
+         \hlkwc{y} \hlstd{= x[[}\hlkwd{which.max}\hlstd{(n)]],}
+         \hlkwc{main} \hlstd{=} \hlstr{'Q-Q Plot of Largest Sample, Standard Normal'}\hlstd{)}
+  \hlkwd{qqline}\hlstd{(}\hlkwc{y} \hlstd{= x[[}\hlkwd{which.max}\hlstd{(n)]],}
+         \hlkwc{distribution} \hlstd{= qnorm,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-4} 
+\begin{kframe}\begin{alltt}
+  \hlcom{## Exponential, rate 1}
+  \hlcom{# Draw samples}
+  \hlstd{x} \hlkwb{<-} \hlkwd{sapply}\hlstd{(}\hlkwc{X} \hlstd{= n,}
+              \hlkwc{FUN} \hlstd{= ars,}
+              \hlkwc{g} \hlstd{= dexp,}
+              \hlkwc{D} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{Inf}\hlstd{))}
+  \hlcom{# Plot of sample mean as a function of sample size}
+  \hlstd{xBar} \hlkwb{<-} \hlkwd{unlist}\hlstd{(}\hlkwd{lapply}\hlstd{(}\hlkwc{X} \hlstd{= x,}
+                        \hlkwc{FUN} \hlstd{= mean))}
+  \hlkwd{plot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{log}\hlstd{(n),}
+       \hlkwc{y} \hlstd{= xBar,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Sample Mean of Exponential (1) as a Function of log(n)'}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h} \hlstd{=} \hlnum{1}\hlstd{,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-5} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Plot of sample variance as a function of sample size}
+  \hlstd{s2Bar} \hlkwb{<-} \hlkwd{unlist}\hlstd{(}\hlkwd{lapply}\hlstd{(}\hlkwc{X} \hlstd{= x,}
+                         \hlkwc{FUN} \hlstd{= var))}
+  \hlkwd{plot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{log}\hlstd{(n),}
+       \hlkwc{y} \hlstd{= s2Bar,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Sample Variance of Exponential (1) as a Function of log(n)'}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h} \hlstd{=} \hlnum{1}\hlstd{,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-6} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Relative frequency histogram of largest sample with superimposed density}
+  \hlkwd{hist}\hlstd{(x[[}\hlkwd{which.max}\hlstd{(n)]],}
+       \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Relative Frequency Histogram of Largest Sample, Exponential (1)'}\hlstd{)}
+  \hlkwd{curve}\hlstd{(dexp,}
+        \hlkwc{add} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+        \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-7} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Q-Q plot of largest sample}
+  \hlkwd{qqplot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{qexp}\hlstd{(}\hlkwd{ppoints}\hlstd{(}\hlnum{500}\hlstd{)),}
+         \hlkwc{y} \hlstd{= x[[}\hlkwd{which.max}\hlstd{(n)]],}
+         \hlkwc{main} \hlstd{=} \hlstr{'Q-Q Plot of Largest Sample Exponential (1)'}\hlstd{)}
+  \hlkwd{qqline}\hlstd{(}\hlkwc{y} \hlstd{= x[[}\hlkwd{which.max}\hlstd{(n)]],}
+         \hlkwc{distribution} \hlstd{= qexp,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-8} 
+\begin{kframe}\begin{alltt}
+  \hlcom{## Uniform (0,1)}
+  \hlcom{# Draw samples}
+  \hlstd{x} \hlkwb{<-} \hlkwd{sapply}\hlstd{(}\hlkwc{X} \hlstd{= n,}
+              \hlkwc{FUN} \hlstd{= ars,}
+              \hlkwc{g} \hlstd{= dunif,}
+              \hlkwc{D} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{))}
+  \hlcom{# Plot of sample mean as a function of sample size}
+  \hlstd{xBar} \hlkwb{<-} \hlkwd{unlist}\hlstd{(}\hlkwd{lapply}\hlstd{(}\hlkwc{X} \hlstd{= x,}
+                        \hlkwc{FUN} \hlstd{= mean))}
+  \hlkwd{plot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{log}\hlstd{(n),}
+       \hlkwc{y} \hlstd{= xBar,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Sample Mean of Uniform (0,1) as a Function of log(n)'}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h} \hlstd{=} \hlnum{0.5}\hlstd{,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-9} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Plot of sample variance as a function of sample size}
+  \hlstd{s2Bar} \hlkwb{<-} \hlkwd{unlist}\hlstd{(}\hlkwd{lapply}\hlstd{(}\hlkwc{X} \hlstd{= x,}
+                         \hlkwc{FUN} \hlstd{= var))}
+  \hlkwd{plot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{log}\hlstd{(n),}
+       \hlkwc{y} \hlstd{= s2Bar,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Sample Variance of Uniform (0,1) as a Function of log(n)'}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h} \hlstd{=} \hlnum{1}\hlopt{/}\hlnum{12}\hlstd{,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-10} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Relative frequency histogram of largest sample with superimposed density}
+  \hlkwd{hist}\hlstd{(x[[}\hlkwd{which.max}\hlstd{(n)]],}
+       \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{,}
+       \hlkwc{main} \hlstd{=} \hlstr{'Relative Frequency Histogram of Largest Sample, Uniform (0,1)'}\hlstd{)}
+  \hlkwd{curve}\hlstd{(dunif,}
+        \hlkwc{add} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+        \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-11} 
+\begin{kframe}\begin{alltt}
+  \hlcom{# Q-Q plot of largest sample}
+  \hlkwd{qqplot}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{qunif}\hlstd{(}\hlkwd{ppoints}\hlstd{(}\hlnum{500}\hlstd{)),}
+         \hlkwc{y} \hlstd{= x[[}\hlkwd{which.max}\hlstd{(n)]],}
+         \hlkwc{main} \hlstd{=} \hlstr{'Q-Q Plot of Largest Sample, Uniform (0,1)'}\hlstd{)}
+  \hlkwd{qqline}\hlstd{(}\hlkwc{y} \hlstd{= x[[}\hlkwd{which.max}\hlstd{(n)]],}
+         \hlkwc{distribution} \hlstd{= qunif,}
+         \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/r-chunk2-12} 
+
 \end{knitrout}
 
 \bibliographystyle{plainnat}
