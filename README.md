@@ -38,6 +38,7 @@ The team members are listed below (alphabetically) by surname:
 4. `library(ars) # Load the ars package`
 4. `library(testthat) # Load testthat`
 5. `test_package('ars', 'main') # Run the tests`
+6. **CAVEAT** This function relies on the package **numDeriv**. Depending on the specs of your computer (CPU/ RAM availibility) some of tests may have trouble converging. We have tested on Mac/ PC and all our tests have passed successfully numerous times. As a reference guide to specs, our Mac used the following [2.5GHz Macbook Pro 15'' Retina Display specs](http://www.apple.com/macbook-pro/specs-retina).
 
 If the above steps have executed without error, then the `ars` function is ready to use! 
 

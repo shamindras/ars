@@ -130,9 +130,18 @@ In addition to the tests for each auxiliary function, we also wrote tests
 for the overall \texttt{ars} function, checking its output against theory.
 This modular testing structure allowed us to easily create an overall testing
 function \texttt{test-main.R} which combined all tests into one.
-After all was said and done, we tested the package in the BCE. Please see the 
-Appendix for how to use the function with end-to-end testing performed on the 
-validity of the output (e.g. histograms).
+After all was said and done, we tested the package on our dev environments using Windows
+and Mac. 
+
+\textbf{CAVEAT:} This function relies on the package \texttt{numDeriv} for numerical 
+differentiation. Depending on the specs of your computer (CPU/ RAM availibility) 
+some of tests may have trouble converging as a result. We have tested on Mac/ PC 
+and all our tests have passed successfully numerous times. As a reference guide 
+to specs, our Mac used the following 2.5GHz Macbook Pro 15'' Retina Display specs:\url{http://www.apple.com/macbook-pro/specs-retina}. We recommend using similar specs when testing.
+
+Please see the Appendix for how to use the function with end-to-end testing performed on the 
+validity of the output (e.g. histograms). The Appendix also contains a printout of 
+our github \texttt{README.md} file which has an installation guide for the package.
 
 \section{Documentation}
 
