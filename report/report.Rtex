@@ -224,7 +224,7 @@ histograms which can help determine the validity of the distribution of the samp
 points returned from the \texttt{ars} function. This is effectively a demonstration of 
 our end-to-end testing methodology.
 
-%% begin.rcode r-chunk2, cache=TRUE, warning=FALSE, eval=TRUE
+%% begin.rcode r-chunk2, cache=TRUE, warning=FALSE, eval=TRUE, fig.align='center'
 %  ## Define various sample sizes
 %  n <- c(1e1,1e2,1e3)
 %  
