@@ -122,7 +122,9 @@ In addition to the tests for each auxiliary function, we also wrote tests
 for the overall \texttt{ars} function, checking its output against theory.
 This modular testing structure allowed us to easily create an overall testing
 function \texttt{test-main.R} which combined all tests into one.
-After all was said and done, we tested the package in the BCE.
+After all was said and done, we tested the package in the BCE. Please see the 
+Appendix for how to use the function with end-to-end testing performed on the 
+validity of the output (e.g. histograms).
 
 \section{Documentation}
 
@@ -132,9 +134,7 @@ a single command. We maintained the \texttt{roxygen2} style throughout the codin
 ensuring that function descriptions, inputs, outputs, and examples were up-to-date.
 We followed the R Style Guide for coding and linting practices,
 and heavily commented our code to ensure clarity and to facilitate code
-review. We also created a \texttt{vignette} to allow the end-user to efficiently
-get up to speef with function usage. Please see appendix for the auto-generated 
-reference manual and the vignette.
+review. Please see appendix for the auto-generated reference manual.
 
 \section{Collaboration}
 
@@ -161,10 +161,71 @@ with major contributions breaking down as follows:
     \texttt{faux\_Lkx}, \texttt{faux\_Ukx}, and pair programmed with Courtney on some aspects of \texttt{ars.R}.
 \end{enumerate}
 
+\newpage
+
+\section{Appendix}
+
+\subsection{Using the \texttt{ars} Function and some Validity Testing}
+
+Below are some test use cases for the \texttt{ars} function with detailed 
+comments. Also shown are some standard statistical tests and histograms which
+can help determine the validity of the distribution of the sample points
+returned from the \texttt{ars} function. This is effectively a demonstration of 
+our end-to-end testing methodology.
+
 %% begin.rcode r-chunk1, cache=TRUE, warning=FALSE, eval=TRUE
-% install.packages("../ars_0.1.tar.gz", repos=NULL, type="source")
+% install.packages("../ars.tar.gz", repos=NULL, type="source")
 % library(ars)
-% dnorm1000 <- ars(100,g=dnorm,D=c(-Inf,Inf))
+% 
+% # We can reference a standard normal density using R's built in 'dnorm' function
+% set.seed(0)
+% dnorm_N0_1_1000_Rinbult <- ars(n = 1000, g = dnorm, D = c(-Inf,Inf))
+% 
+% # We can reference a non-standard normal density using R's built in 'dnorm' 
+% # function as well e.g a N(5, 3) density
+% # This is done using an anonymous function call
+% set.seed(0)
+% dnorm_N5_3_1000_Rinbult <- ars(n = 1000, g = function(x) dnorm(x = x, mean = 5
+%                                                               , sd = 3)
+%                               , D = c(-Inf,Inf))
+% 
+% # We can reference a density using an explicit form for g(x) directly by writing 
+% # it as an explicit function of x e.g. a N(0, 1) density can be done as follows
+% set.seed(0)
+% dnorm_N0_1_1000_exf <- ars(n = 1000
+%                             , g = function(x) (1/sqrt(2*pi))*exp(-(x^2)/2)
+%                             , D = c(-Inf,Inf))
+% 
+% # Other densities can also be tested as follows
+% # Chi-Squared with 5 degrees of freedom
+% set.seed(0)
+% dchisq_5_1000_Rinbult <- ars(1000
+%                              , g = function(x) dchisq(x, df = 5)
+%                              , D = c(0, Inf))
+% 
+% # Other densities can also be tested as follows
+% # Exponential(10)
+% set.seed(0)
+% dexp_10_1000_exf <- ars(1000
+%                         , g = function(x) 10*exp(-10*x)
+%                         , D=c(0, Inf))
+%% end.rcode
+
+For the above densities we can conduct some some standard statistical tests and 
+histograms which can help determine the validity of the distribution of the sample 
+points returned from the \texttt{ars} function. This is effectively a demonstration of 
+our end-to-end testing methodology.
+
+%% begin.rcode r-chunk2, cache=TRUE, warning=FALSE, eval=TRUE
+% # jonno/ courtney - could you please add in our standard testing function here
+% # It should accept an input vector of samples and output KS-test, histogram, 
+% # QQplot etc
+% # We can directly reference the sampled vectors from the previous page as 
+% # follows e.g. ars_testing_function()
+% # Test 1 - The validity of the standard normal density output as per above
+% # testing_function(dnorm_N0_1_1000_Rinbult)
+% # Test 2 - The validity of the exp(10) density
+% # testing_function(dexp_10_1000_exf)
 %% end.rcode
 
 \bibliographystyle{plainnat}
