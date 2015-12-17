@@ -14,6 +14,35 @@ The team members are listed below (alphabetically) by surname:
 * Courtney Schiffman  [CS]
 * Shamindra Shrotriya [SS]
 
+## Installation Guide
+### Run the following commands in `bash` at the command line
+1. `export ars_clone_path=/home/oski/Documents # Change this to a location of your choice`
+2. `cd $ars_clone_path # change to the clone path dorectory specified`
+3. `git clone https://github.com/shamindras/ars.git`
+4. `cd ars    # change to the ars directory`
+5. `rstudio . # launch rstudio from the command line`
+
+### Run the following commands once in `Rstudio`
+1. `getwd() # Check that the working directory is the same as $install_path/ars`
+2. `install.packages("./ars_1.0.tar.gz", repos=NULL, type="source") # Install ars package`
+- Warning: If this results in the following error:
+  `ERROR: dependency ‘numDeriv’ is not available for package ‘ars’`
+- Then run the following commands in Rstudio
+  - `install.packages(c("numDeriv", "testthat"))`
+  - `library(numDeriv); library(testthat)`
+- Rerun
+  - `install.packages("./ars_1.0.tar.gz", repos=NULL, type="source")`
+  - The ars package should now be installed with required dependencies
+  - NOTE: This installation of dependencies from source is a [known issue](https://github.com/ropensci/plotly/issues/247) with no clearly defined solution for all operating systems
+3. `library(numDeriv); library(testthat) # Load the dependencies`
+4. `library(ars) # Load the ars package`
+4. `library(testthat) # Load testthat`
+5. `test_package('ars', 'main') # Run the tests`
+
+If the above steps have executed without error, then the `ars` function is ready to test! 
+
+*Happy Adaptive Rejection Sampling!*
+
 ## Assignment Instructions
 * The assignment instructions are stored in the *project.pdf* document in the **reference** folder of this repo.
 
