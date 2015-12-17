@@ -167,7 +167,9 @@ In addition to the tests for each auxiliary function, we also wrote tests
 for the overall \texttt{ars} function, checking its output against theory.
 This modular testing structure allowed us to easily create an overall testing
 function \texttt{test-main.R} which combined all tests into one.
-After all was said and done, we tested the package in the BCE.
+After all was said and done, we tested the package in the BCE. Please see the 
+Appendix for how to use the function with end-to-end testing performed on the 
+validity of the output (e.g. histograms).
 
 \section{Documentation}
 
@@ -177,9 +179,7 @@ a single command. We maintained the \texttt{roxygen2} style throughout the codin
 ensuring that function descriptions, inputs, outputs, and examples were up-to-date.
 We followed the R Style Guide for coding and linting practices,
 and heavily commented our code to ensure clarity and to facilitate code
-review. We also created a \texttt{vignette} to allow the end-user to efficiently
-get up to speef with function usage. Please see appendix for the auto-generated 
-reference manual and the vignette.
+review. Please see appendix for the auto-generated reference manual.
 
 \section{Collaboration}
 
@@ -196,7 +196,7 @@ with major contributions breaking down as follows:
 \begin{enumerate}
 	\item Jonathan wrote \texttt{faux\_CheckLogConcavity} and assisted with
 	\texttt{faux\_hx}, \texttt{faux\_Lkx}, \texttt{faux\_Ukx}, and
-	\texttt{faux\_SampleSkx} (including associated tests and documentation).
+	\texttt{faux\_SampleSkx}.
 	\item Chenzhi wrote \texttt{faux\_hx}, \texttt{faux\_hPrimex}, \texttt{faux\_Lkx}    and \texttt{faux\_Zj}, as well as their tests.
 	\item Courtney wrote \texttt{faux\_SampleSkx}, \texttt{faux\_Skx}, and
 	\texttt{faux\_uInterval}, and helped to create the final \texttt{ars} function.
@@ -206,19 +206,79 @@ with major contributions breaking down as follows:
     \texttt{faux\_Lkx}, \texttt{faux\_Ukx}, and pair programmed with Courtney on some aspects of \texttt{ars.R}.
 \end{enumerate}
 
+\newpage
+
+\section{Appendix}
+
+\subsection{Using the \texttt{ars} Function and some Validity Testing}
+
+Below are some test use cases for the \texttt{ars} function with detailed 
+comments. Also shown are some standard statistical tests and histograms which
+can help determine the validity of the distribution of the sample points
+returned from the \texttt{ars} function. This is effectively a demonstration of 
+our end-to-end testing methodology.
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
- \hlkwd{require}\hlstd{(ars)}
+ \hlkwd{install.packages}\hlstd{(}\hlstr{"../ars.tar.gz"}\hlstd{,} \hlkwc{repos}\hlstd{=}\hlkwa{NULL}\hlstd{,} \hlkwc{type}\hlstd{=}\hlstr{"source"}\hlstd{)}
+ \hlkwd{library}\hlstd{(ars)}
+
+ \hlcom{# We can reference a standard normal density using R's built in 'dnorm' function}
+ \hlkwd{set.seed}\hlstd{(}\hlnum{0}\hlstd{)}
+ \hlstd{dnorm_N0_1_1000_Rinbult} \hlkwb{<-} \hlkwd{ars}\hlstd{(}\hlkwc{n} \hlstd{=} \hlnum{1000}\hlstd{,} \hlkwc{g} \hlstd{= dnorm,} \hlkwc{D} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{Inf}\hlstd{,}\hlnum{Inf}\hlstd{))}
+
+ \hlcom{# We can reference a non-standard normal density using R's built in 'dnorm' }
+ \hlcom{# function as well e.g a N(5, 3) density}
+ \hlcom{# This is done using an anonymous function call}
+ \hlkwd{set.seed}\hlstd{(}\hlnum{0}\hlstd{)}
+ \hlstd{dnorm_N5_3_1000_Rinbult} \hlkwb{<-} \hlkwd{ars}\hlstd{(}\hlkwc{n} \hlstd{=} \hlnum{1000}\hlstd{,} \hlkwc{g} \hlstd{=} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)} \hlkwd{dnorm}\hlstd{(}\hlkwc{x} \hlstd{= x,} \hlkwc{mean} \hlstd{=} \hlnum{5}
+                                                               \hlstd{,} \hlkwc{sd} \hlstd{=} \hlnum{3}\hlstd{)}
+                               \hlstd{,} \hlkwc{D} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{Inf}\hlstd{,}\hlnum{Inf}\hlstd{))}
+
+ \hlcom{# We can reference a density using an explicit form for g(x) directly by writing }
+ \hlcom{# it as an explicit function of x e.g. a N(0, 1) density can be done as follows}
+ \hlkwd{set.seed}\hlstd{(}\hlnum{0}\hlstd{)}
+ \hlstd{dnorm_N0_1_1000_exf} \hlkwb{<-} \hlkwd{ars}\hlstd{(}\hlkwc{n} \hlstd{=} \hlnum{1000}
+                             \hlstd{,} \hlkwc{g} \hlstd{=} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{) (}\hlnum{1}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlnum{2}\hlopt{*}\hlstd{pi))}\hlopt{*}\hlkwd{exp}\hlstd{(}\hlopt{-}\hlstd{(x}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{/}\hlnum{2}\hlstd{)}
+                             \hlstd{,} \hlkwc{D} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{Inf}\hlstd{,}\hlnum{Inf}\hlstd{))}
+
+ \hlcom{# Other densities can also be tested as follows}
+ \hlcom{# Chi-Squared with 5 degrees of freedom}
+ \hlkwd{set.seed}\hlstd{(}\hlnum{0}\hlstd{)}
+ \hlstd{dchisq_5_1000_Rinbult} \hlkwb{<-} \hlkwd{ars}\hlstd{(}\hlnum{1000}
+                              \hlstd{,} \hlkwc{g} \hlstd{=} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)} \hlkwd{dchisq}\hlstd{(x,} \hlkwc{df} \hlstd{=} \hlnum{5}\hlstd{)}
+                              \hlstd{,} \hlkwc{D} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{Inf}\hlstd{))}
+
+ \hlcom{# Other densities can also be tested as follows}
+ \hlcom{# Exponential(10)}
+ \hlkwd{set.seed}\hlstd{(}\hlnum{0}\hlstd{)}
+ \hlstd{dexp_10_1000_exf} \hlkwb{<-} \hlkwd{ars}\hlstd{(}\hlnum{1000}
+                         \hlstd{,} \hlkwc{g} \hlstd{=} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)} \hlnum{10}\hlopt{*}\hlkwd{exp}\hlstd{(}\hlopt{-}\hlnum{10}\hlopt{*}\hlstd{x)}
+                         \hlstd{,} \hlkwc{D}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{Inf}\hlstd{))}
 \end{alltt}
+\end{kframe}
+\end{knitrout}
 
+For the above densities we can conduct some some standard statistical tests and 
+histograms which can help determine the validity of the distribution of the sample 
+points returned from the \texttt{ars} function. This is effectively a demonstration of 
+our end-to-end testing methodology.
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: ars}}\begin{alltt}
- \hlstd{dnorm1000} \hlkwb{<-} \hlkwd{ars}\hlstd{(}\hlnum{100}\hlstd{,}\hlkwc{g}\hlstd{=dnorm,}\hlkwc{D}\hlstd{=}\hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{Inf}\hlstd{,}\hlnum{Inf}\hlstd{))}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+ \hlcom{# jonno/ courtney - could you please add in our standard testing function here}
+ \hlcom{# It should accept an input vector of samples and output KS-test, histogram, }
+ \hlcom{# QQplot etc}
+ \hlcom{# We can directly reference the sampled vectors from the previous page as }
+ \hlcom{# follows e.g. ars_testing_function()}
+ \hlcom{# Test 1 - The validity of the standard normal density output as per above}
+ \hlcom{# testing_function(dnorm_N0_1_1000_Rinbult)}
+ \hlcom{# Test 2 - The validity of the exp(10) density}
+ \hlcom{# testing_function(dexp_10_1000_exf)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): could not find function "{}ars"{}}}\end{kframe}
+\end{kframe}
 \end{knitrout}
 
 \bibliographystyle{plainnat}
